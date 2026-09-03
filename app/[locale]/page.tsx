@@ -58,9 +58,12 @@ export default async function LocaleHome({ params }: { params: Promise<{ locale:
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Prom4Fans',
-    url: `https://prom4fans.de/${locale}`,
+    url: `https://www.prom4fans.com/${locale}`,
     description: copy.description,
-    address: { '@type': 'PostalAddress', addressLocality: 'Flintbek', addressCountry: 'DE' },
+    email: 'contact@prom4fans.com',
+    telephone: '+49 177 3624269',
+    logo: 'https://www.prom4fans.com/favicon.svg',
+    address: { '@type': 'PostalAddress', streetAddress: 'Brückenstr. 9', postalCode: '24220', addressLocality: 'Flintbek', addressCountry: 'DE' },
   };
 
   return (

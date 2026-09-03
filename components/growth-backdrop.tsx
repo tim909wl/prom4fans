@@ -2,8 +2,8 @@
 
 import { useId } from 'react';
 
-const pathD = 'M100,760 L100,540 L420,540 L420,360 L720,360 L720,180 L1000,180 L1080,90';
-const pathLength = 1650;
+const pathD = 'M80,560 L80,440 L320,440 L320,350 L560,350 L560,260 L800,260 L800,170 L1080,170';
+const pathLength = 1420;
 
 export function GrowthBackdrop({ visible }: { visible: boolean }) {
   const gradientId = useId();

@@ -155,14 +155,14 @@ export function PhoneStage({
               <span className="mt-1 block text-[8px] font-semibold tracking-wide text-white/90 capitalize sm:text-[9px] md:mt-2 md:text-[11px]">{date || ' '}</span>
             </div>
             <div className="absolute inset-x-2 bottom-2 z-20 sm:inset-x-3 sm:bottom-3">
-              <div className="relative h-[74px] sm:h-[92px] md:h-[130px]">
+              <div className="relative h-[250px] sm:h-[300px] md:h-[430px]">
                 {stack.map(({ id, item }, index) => (
                   <div
                     key={id}
                     className={cn('absolute inset-x-0 bottom-0 transition-all duration-500 ease-out', index === 0 && 'notification-enter')}
                     style={{
-                      transform: `translateY(${-index * 9}px) scale(${1 - index * 0.05})`,
-                      opacity: 1 - index * 0.19,
+                      transform: `translateY(${-index * 62}px)`,
+                      opacity: 1,
                       zIndex: STACK_SIZE - index,
                     }}
                   >

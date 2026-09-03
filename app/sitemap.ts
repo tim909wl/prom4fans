@@ -1,12 +1,12 @@
 import type { MetadataRoute } from 'next';
 export const dynamic = 'force-static';
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://prom4fans.de';
+const base = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.prom4fans.com').replace(/\/$/, '');
 const locales = ['de', 'en'] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const languages = Object.fromEntries(locales.map((locale) => [locale, `${base}/${locale}`]));
-  const now = new Date();
+  const now = new Date('2026-09-03T00:00:00.000Z');
 
   const localePages: MetadataRoute.Sitemap = locales.map((locale) => ({
     url: `${base}/${locale}`,

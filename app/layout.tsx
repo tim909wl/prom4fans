@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://prom4fans.de';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.prom4fans.com';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: 'Prom4Fans',
     template: '%s | Prom4Fans',
   },
-  description: 'Prom4Fans – die Plattform für echte Fan-Momente.',
+  description: 'Prom4Fans begleitet Frauen ab 35 beim Aufbau und Wachstum ihrer Subscription-Präsenz – mit klarer Strategie, Content und persönlichem Management.',
   applicationName: 'Prom4Fans',
   alternates: { canonical: '/' },
   icons: { icon: '/favicon.svg' },
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     url: '/',
     siteName: 'Prom4Fans',
     title: 'Prom4Fans',
-    description: 'Die Plattform für echte Fan-Momente.',
+    description: 'Creator Management für Frauen ab 35: klare Positionierung, Content und nachhaltige Subscription-Strukturen.',
   },
-  twitter: { card: 'summary', title: 'Prom4Fans', description: 'Die Plattform für echte Fan-Momente.' },
+  twitter: { card: 'summary_large_image', title: 'Prom4Fans', description: 'Creator Management für Frauen ab 35.' },
   robots: { index: true, follow: true },
 };
 
