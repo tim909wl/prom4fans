@@ -43,7 +43,7 @@ jobs:
       - name: Configure SSH
         run: |
           install -m 700 -d ~/.ssh
-          ssh-keyscan -p "${{ secrets.SSH_PORT || 22 }}" "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
+          ssh-keyscan -t rsa,ecdsa -p "${{ secrets.SSH_PORT || 22 }}" "${{ secrets.SSH_HOST }}" > ~/.ssh/known_hosts
           sudo apt-get update -qq
           sudo apt-get install -y -qq sshpass
 
@@ -53,9 +53,8 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
-          REMOTE_PATH: ${{ secrets.REMOTE_PATH || '/home/su695012/public' }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH || 'public' }}
         run: |
           export SSHPASS="$SSH_PASSWORD"
-          sshpass -e ssh -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p '$REMOTE_PATH'"
           sshpass -e rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" out/ "$SSH_USER@$SSH_HOST:$REMOTE_PATH/"
           sshpass -e rsync -az -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" .htaccess "$SSH_USER@$SSH_HOST:$REMOTE_PATH/.htaccess"
