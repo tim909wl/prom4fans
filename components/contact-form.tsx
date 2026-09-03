@@ -42,6 +42,7 @@ const copy: Record<Locale, {
       invalid_email: 'Bitte gib eine gültige E-Mail-Adresse an.',
       invalid_message: 'Deine Nachricht sollte zwischen 10 und 3000 Zeichen lang sein.',
       invalid_profile: 'Bitte vervollständige alle Profilangaben.',
+      invalid: 'Bitte fülle alle Pflichtfelder aus und bestätige die Datenschutzerklärung.',
       consent_required: 'Bitte bestätige die Datenschutzerklärung.',
       rate_limited: 'Zu viele Anfragen. Bitte versuch es in einer Stunde erneut.',
       spam_check_failed: 'Das hat nicht geklappt. Bitte lade die Seite neu und versuch es noch einmal.',
@@ -64,6 +65,7 @@ const copy: Record<Locale, {
       invalid_email: 'Please enter a valid email address.',
       invalid_message: 'Your message should be between 10 and 3000 characters.',
       invalid_profile: 'Please complete all profile details.',
+      invalid: 'Please complete all required fields and accept the privacy policy.',
       consent_required: 'Please confirm the privacy policy.',
       rate_limited: 'Too many requests. Please try again in an hour.',
       spam_check_failed: 'That didn’t work. Please reload the page and try again.',
@@ -228,8 +230,8 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
         )}
 
         <div className="mt-2 flex gap-2">
-          {step > 1 && <button type="button" onClick={() => { setErrorKey(null); setStep((value) => value - 1); }} className="rounded-full border border-white/20 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10">Zurück</button>}
-          {step < 3 ? <button type="button" onClick={() => { setErrorKey(null); setStep((value) => value + 1); }} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43]">Weiter <ArrowUpRight className="size-4" /></button> : <button type="submit" disabled={status === 'submitting'} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43] disabled:opacity-60">{status === 'submitting' ? c.submitting : c.submit}{status === 'submitting' ? <Loader2 className="size-4 animate-spin" /> : <ArrowUpRight className="size-4" />}</button>}
+          {step > 1 && <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value - 1); }} className="rounded-full border border-white/20 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10">Zurück</button>}
+          {step < 3 ? <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value + 1); }} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43]">Weiter <ArrowUpRight className="size-4" /></button> : <button type="submit" disabled={status === 'submitting'} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43] disabled:opacity-60">{status === 'submitting' ? c.submitting : c.submit}{status === 'submitting' ? <Loader2 className="size-4 animate-spin" /> : <ArrowUpRight className="size-4" />}</button>}
         </div>
       </div>
     </form>
