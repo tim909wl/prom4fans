@@ -4,7 +4,10 @@ Options -Indexes
 DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
+  # Some shared-hosting vhosts do not apply DirectoryIndex consistently.
+  # Resolve the document root explicitly so `/` never falls back to a directory listing.
   RewriteEngine On
+  RewriteRule ^$ index.html [END]
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTP_HOST} !^www\. [NC]
