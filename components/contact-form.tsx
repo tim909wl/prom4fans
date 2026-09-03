@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRef, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { ArrowUpRight, Check, Loader2 } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 
@@ -78,7 +78,6 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
   const [status, setStatus] = useState<Status>('idle');
   const [errorKey, setErrorKey] = useState<string | null>(null);
   const [step, setStep] = useState(1);
-  const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -132,7 +131,7 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
   const [before, linkText, after] = c.consent('/datenschutz');
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} noValidate>
+    <form onSubmit={handleSubmit}>
       <div className="grid size-12 place-items-center rounded-2xl bg-[#d6fa43] text-[#15162d]">
         <ArrowUpRight className="size-5" />
       </div>
