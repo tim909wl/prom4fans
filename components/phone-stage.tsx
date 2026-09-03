@@ -10,7 +10,7 @@ type MessageKey = 'follow' | 'discover' | 'like' | 'join';
 type Platform = 'onlyfans' | 'fansly' | 'fanvue' | 'maloum';
 
 const notifications = [
-  ['Mira', 'follow', 'onlyfans'], ['Sophie', 'discover', 'fansly'], ['Leonie', 'follow', 'fanvue'], ['Nina', 'like', 'maloum'], ['Clara', 'join', 'onlyfans'], ['Lena', 'follow', 'fansly'], ['Paula', 'discover', 'fanvue'], ['Mara', 'like', 'onlyfans'], ['Julia', 'join', 'maloum'], ['Anna', 'follow', 'fansly'], ['Sarah', 'discover', 'onlyfans'], ['Laura', 'follow', 'fanvue'], ['Emma', 'like', 'maloum'], ['Johanna', 'join', 'onlyfans'], ['Marie', 'follow', 'fansly'], ['Livia', 'discover', 'fanvue'], ['Hannah', 'like', 'onlyfans'], ['Elisa', 'join', 'maloum'], ['Amelie', 'follow', 'fansly'], ['Mia', 'discover', 'onlyfans'], ['Sina', 'join', 'fanvue'], ['Fiona', 'follow', 'maloum'], ['Carla', 'like', 'onlyfans'], ['Tessa', 'join', 'fansly'], ['Nele', 'follow', 'fanvue'], ['Romy', 'discover', 'onlyfans'], ['Alina', 'like', 'maloum'], ['Zoe', 'join', 'fansly'], ['Ida', 'follow', 'onlyfans'], ['Maja', 'discover', 'fanvue'],
+  ['Mira', 'follow', 'onlyfans'], ['Sophie', 'discover', 'fansly'], ['Leonie', 'follow', 'fanvue'], ['Nina', 'like', 'maloum'], ['Clara', 'join', 'onlyfans'], ['Lena', 'follow', 'fansly'], ['Paula', 'discover', 'fanvue'], ['Mara', 'like', 'onlyfans'], ['Julia', 'join', 'maloum'], ['Anna', 'follow', 'fansly'], ['Sarah', 'discover', 'onlyfans'], ['Laura', 'follow', 'fanvue'], ['Emma', 'like', 'maloum'], ['Johanna', 'join', 'onlyfans'], ['Marie', 'follow', 'fansly'], ['Livia', 'discover', 'fanvue'], ['Hannah', 'like', 'onlyfans'], ['Elisa', 'join', 'maloum'], ['Amelie', 'follow', 'fansly'], ['Mia', 'discover', 'onlyfans'], ['Sina', 'join', 'fanvue'], ['Fiona', 'follow', 'maloum'], ['Carla', 'like', 'onlyfans'], ['Tessa', 'join', 'fansly'], ['Nele', 'follow', 'fanvue'], ['Romy', 'discover', 'onlyfans'], ['Alina', 'like', 'maloum'], ['Zoe', 'join', 'fansly'], ['Ida', 'follow', 'onlyfans'], ['Maja', 'discover', 'fanvue'], ['Lukas', 'follow', 'onlyfans'], ['Jonas', 'discover', 'fansly'], ['Felix', 'like', 'fanvue'], ['Noah', 'join', 'maloum'], ['Elias', 'follow', 'onlyfans'],
 ] as const satisfies ReadonlyArray<readonly [string, MessageKey, Platform]>;
 
 const icons: Record<Platform, string> = {
@@ -34,7 +34,7 @@ const phoneAlt = {
 
 type Notification = (typeof notifications)[number];
 
-const STACK_SIZE = 5;
+const STACK_SIZE = 4;
 const ROTATE_MS = 2600;
 
 /** Rotates through the notification list, keeping at most STACK_SIZE entries — newest
@@ -62,7 +62,7 @@ function useNotificationStack() {
 function NotificationCard({ item, locale }: { item: Notification; locale: 'de' | 'en' }) {
   const [name, messageKey, platform] = item;
   return (
-    <div className="flex items-center gap-1.5 rounded-xl border border-white/55 bg-white/95 p-2 text-[#16172c] shadow-xl backdrop-blur sm:gap-2 sm:rounded-2xl sm:p-2.5">
+    <div className="flex min-h-12 items-center gap-1.5 rounded-xl border border-white/55 bg-white/95 p-1.5 text-[#16172c] shadow-xl backdrop-blur sm:gap-2 sm:rounded-2xl sm:p-2.5">
       <span className="grid size-6 shrink-0 place-items-center rounded-full bg-white p-1 shadow-sm sm:size-7 md:size-8 md:p-1.5">
         <Image src={icons[platform]} alt="" width={18} height={18} className="object-contain" />
       </span>
@@ -155,13 +155,13 @@ export function PhoneStage({
               <span className="mt-1 block text-[8px] font-semibold tracking-wide text-white/90 capitalize sm:text-[9px] md:mt-2 md:text-[11px]">{date || ' '}</span>
             </div>
             <div className="absolute inset-x-2 bottom-2 z-20 sm:inset-x-3 sm:bottom-3">
-              <div className="relative h-[250px] sm:h-[300px] md:h-[430px]">
+              <div className="relative h-[190px] sm:h-[260px] md:h-[330px]">
                 {stack.map(({ id, item }, index) => (
                   <div
                     key={id}
                     className={cn('absolute inset-x-0 bottom-0 transition-all duration-500 ease-out', index === 0 && 'notification-enter')}
                     style={{
-                      transform: `translateY(${-index * 62}px)`,
+                      transform: `translateY(${-index * 54}px)`,
                       opacity: 1,
                       zIndex: STACK_SIZE - index,
                     }}
