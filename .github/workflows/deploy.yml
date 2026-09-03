@@ -38,7 +38,13 @@ jobs:
         env:
           FORM_SECRET: ${{ secrets.FORM_SECRET }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL || 'https://prom4fans.com' }}
-        run: npm run static
+        run: |
+          npm run static
+          # Apache expects an index file inside slash-routed directories.
+          for route in de en kontakt impressum datenschutz nutzungsbedingungen; do
+            mkdir -p "out/$route"
+            cp "out/$route.html" "out/$route/index.html"
+          done
 
       - name: Configure SSH
         run: |
