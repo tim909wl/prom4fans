@@ -89,7 +89,7 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
     const data = new FormData(form);
 
     try {
-      const res = await fetch('/api/kontakt', {
+      const res = await fetch('/api/kontakt.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
