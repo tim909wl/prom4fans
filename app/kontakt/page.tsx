@@ -9,7 +9,9 @@ export const metadata: Metadata = { title: 'Kontakt', description: 'Sprich mit P
 // The anti-spam token is minted per request (see lib/contact-token.ts); this
 // page must be rendered dynamically, never statically cached, or every
 // visitor would share one token that goes stale ~2h after the last build.
-export const dynamic = 'force-dynamic';
+// Static hosting compatibility: the form itself posts to the API endpoint.
+// The token is embedded at build time for the exported page.
+export const dynamic = 'force-static';
 
 export default function ContactPage() {
   const token = createContactToken();

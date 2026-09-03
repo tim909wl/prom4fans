@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+export const dynamic = 'force-static';
 
 const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://prom4fans.de';
 const locales = ['de', 'en'] as const;
