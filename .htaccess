@@ -8,6 +8,9 @@ DirectoryIndex index.html
   # Resolve the document root explicitly so `/` never falls back to a directory listing.
   RewriteEngine On
   RewriteRule ^$ index.html [END]
+  # Next static export writes route files as /route.html. Prevent Apache's
+  # directory slash redirect from turning /de into a forbidden directory.
+  RewriteRule ^((?:de|en|kontakt|impressum|datenschutz|nutzungsbedingungen))/?$ $1.html [END]
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTP_HOST} !^www\. [NC]
