@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 500" width="1500" height="500" font-family="Arial, Helvetica, sans-serif">
+<defs><linearGradient id="p4f-grad-20" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#3f1c94"/></linearGradient></defs>
+
+    <rect width="1500" height="500" fill="#15162d"/>
+    <g transform="translate(80 190) scale(1.8750)">
+    <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#p4f-grad-20)"/>
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#d6fa43" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+    <text x="230" y="246" font-weight="900" font-size="42" letter-spacing="1.6" fill="#d6fa43">PROM4FANS</text>
+    <text x="230" y="290" font-weight="700" font-size="22" letter-spacing="2" fill="#c9cadd">CREATOR-LED SUBSCRIPTION GROWTH · BERLIN</text>
+  
+</svg>

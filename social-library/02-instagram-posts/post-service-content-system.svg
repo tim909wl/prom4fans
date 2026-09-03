@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350" font-family="Arial, Helvetica, sans-serif">
+<defs><linearGradient id="p4f-grad-8" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#3f1c94"/></linearGradient></defs>
+
+    <rect width="1080" height="1350" fill="#f3f1fb"/>
+    <rect x="0" y="0" width="1080" height="10" fill="#6c35ed"/>
+    <text x="72" y="190" font-weight="800" font-size="22" letter-spacing="3.08" fill="#6c35ed">LEISTUNG 02</text>
+    <text x="72" y="300" font-weight="900" font-size="84" letter-spacing="-1.5" fill="#15162d">Content System</text>
+    <text x="72" y="420" font-weight="500" font-size="34" fill="#586078">Welche Themen und Formate</text>
+<text x="72" y="469.3" font-weight="500" font-size="34" fill="#586078">gehören zu dir? Ein Rhythmus,</text>
+<text x="72" y="518.6" font-weight="500" font-size="34" fill="#586078">den du auch allein weiterführst.</text>
+    <g transform="translate(72 1222) scale(0.8750)">
+    <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#p4f-grad-8)"/>
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#d6fa43" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

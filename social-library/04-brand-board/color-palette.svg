@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="1200" height="700" font-family="Arial, Helvetica, sans-serif">
+<defs></defs>
+
+    <rect width="1200" height="700" fill="#ffffff"/>
+    <text x="72" y="70" font-weight="800" font-size="22" letter-spacing="3.08" fill="#6c35ed">PROM4FANS — FARBPALETTE</text>
+    
+      <rect x="72" y="140" width="156" height="420" rx="18" fill="#6c35ed" stroke="#e8e5ef"/>
+      <text x="72" y="600" font-weight="800" font-size="18" fill="#15162d">Purple / Primary</text>
+      <text x="72" y="626" font-weight="600" font-size="18" fill="#8a8da3">#6C35ED</text>
+    
+      <rect x="252" y="140" width="156" height="420" rx="18" fill="#15162d" stroke="#e8e5ef"/>
+      <text x="252" y="600" font-weight="800" font-size="18" fill="#15162d">Navy / Ink</text>
+      <text x="252" y="626" font-weight="600" font-size="18" fill="#8a8da3">#15162D</text>
+    
+      <rect x="432" y="140" width="156" height="420" rx="18" fill="#ff5e83" stroke="#e8e5ef"/>
+      <text x="432" y="600" font-weight="800" font-size="18" fill="#15162d">Pink / Accent</text>
+      <text x="432" y="626" font-weight="600" font-size="18" fill="#8a8da3">#FF5E83</text>
+    
+      <rect x="612" y="140" width="156" height="420" rx="18" fill="#d6fa43" stroke="#e8e5ef"/>
+      <text x="612" y="600" font-weight="800" font-size="18" fill="#15162d">Lime / Accent</text>
+      <text x="612" y="626" font-weight="600" font-size="18" fill="#8a8da3">#D6FA43</text>
+    
+      <rect x="792" y="140" width="156" height="420" rx="18" fill="#fbfaf8" stroke="#e8e5ef"/>
+      <text x="792" y="600" font-weight="800" font-size="18" fill="#15162d">Off-white / BG</text>
+      <text x="792" y="626" font-weight="600" font-size="18" fill="#8a8da3">#FBFAF8</text>
+    
+      <rect x="972" y="140" width="156" height="420" rx="18" fill="#f3f1fb" stroke="#e8e5ef"/>
+      <text x="972" y="600" font-weight="800" font-size="18" fill="#15162d">Lavender / BG</text>
+      <text x="972" y="626" font-weight="600" font-size="18" fill="#8a8da3">#F3F1FB</text>
+    
+  
+</svg>

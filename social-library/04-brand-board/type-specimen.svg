@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="Arial, Helvetica, sans-serif">
+<defs></defs>
+
+    <rect width="1200" height="640" fill="#ffffff"/>
+    <text x="72" y="70" font-weight="800" font-size="22" letter-spacing="3.08" fill="#6c35ed">PROM4FANS — TYPOGRAFIE</text>
+    <text x="72" y="220" font-weight="900" font-size="120" letter-spacing="-4" fill="#15162d">Aa Bb Cc</text>
+    <text x="72" y="270" font-weight="700" font-size="20" fill="#8a8da3">Headline — Black / 900 — z.B. Arial Black, Helvetica Bold, oder Geist (Website)</text>
+    <text x="72" y="380" font-weight="500" font-size="40" fill="#15162d">Fließtext in Regular / 500 für Captions und Bio.</text>
+    <text x="72" y="420" font-weight="600" font-size="20" fill="#8a8da3">Body — Regular/Medium — gut lesbar, ruhig, kein Slang.</text>
+    <text x="72" y="500" font-weight="800" font-size="22" letter-spacing="3" fill="#6c35ed">EYEBROW / LABEL — UPPERCASE, WEIT GESPERRT</text>
+  
+</svg>

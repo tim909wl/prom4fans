@@ -16,11 +16,27 @@ const platforms = [
 ];
 
 const copy: Record<Locale, {
+  stepLabel: (step: number) => string;
+  firstStepTitle: string;
   name: string;
+  age: string;
+  country: string;
+  countryPlaceholder: string;
+  platformLegend: string;
+  reach: string;
+  reachPlaceholder: string;
+  comfortLabel: string;
+  comfortOptions: Array<[string, string]>;
+  goalLabel: string;
+  goalOptions: Array<[string, string]>;
+  selectPlaceholder: string;
   email: string;
   message: string;
+  messageLabel: string;
   messagePlaceholder: string;
-  consent: (link: string) => [string, string, string];
+  consent: [string, string, string];
+  back: string;
+  next: string;
   submit: string;
   submitting: string;
   successTitle: string;
@@ -28,11 +44,36 @@ const copy: Record<Locale, {
   errors: Record<string, string>;
 }> = {
   de: {
+    stepLabel: (step) => `Schritt ${step} von 3`,
+    firstStepTitle: 'Dein erster Schritt.',
     name: 'Name',
+    age: 'Alter',
+    country: 'Land',
+    countryPlaceholder: 'z. B. Deutschland',
+    platformLegend: 'Aktuelle oder geplante Subscription-Plattform',
+    reach: 'Aktuelle Social-Media-Reichweite',
+    reachPlaceholder: 'z. B. noch keine oder ca. 12.000 Follower',
+    comfortLabel: 'Womit fühlst du dich wohl zu posten?',
+    comfortOptions: [
+      ['lifestyle', 'Nur nicht-explizite / Lifestyle-Inhalte'],
+      ['both', 'Lifestyle und explizite Inhalte'],
+      ['unsure', 'Noch unsicher – lass uns darüber sprechen'],
+    ],
+    goalLabel: 'Was ist dein Hauptziel?',
+    goalOptions: [
+      ['start', 'Erste Subscription aufbauen'],
+      ['grow', 'Bestehende Subscription wachsen lassen'],
+      ['system', 'Mehr Struktur und weniger Stress'],
+      ['other', 'Etwas anderes'],
+    ],
+    selectPlaceholder: 'Bitte auswählen',
     email: 'E-Mail',
     message: 'Nachricht',
+    messageLabel: 'Erzähl uns von dir',
     messagePlaceholder: 'Erzähl uns kurz, wo du stehst und wohin du möchtest.',
-    consent: (link) => ['Ich habe die ', 'Datenschutzerklärung', ' gelesen und bin mit der Verarbeitung meiner Angaben einverstanden.'],
+    consent: ['Ich habe die ', 'Datenschutzerklärung', ' gelesen und bin mit der Verarbeitung meiner Angaben einverstanden.'],
+    back: 'Zurück',
+    next: 'Weiter',
     submit: 'Nachricht senden',
     submitting: 'Wird gesendet …',
     successTitle: 'Angekommen.',
@@ -51,11 +92,36 @@ const copy: Record<Locale, {
     },
   },
   en: {
+    stepLabel: (step) => `Step ${step} of 3`,
+    firstStepTitle: 'Your first step.',
     name: 'Name',
+    age: 'Age',
+    country: 'Country',
+    countryPlaceholder: 'e.g. Germany',
+    platformLegend: 'Current or planned subscription platform',
+    reach: 'Current social media reach',
+    reachPlaceholder: 'e.g. none yet, or approx. 12,000 followers',
+    comfortLabel: 'What are you comfortable posting?',
+    comfortOptions: [
+      ['lifestyle', 'Non-explicit / lifestyle content only'],
+      ['both', 'Lifestyle and explicit content'],
+      ['unsure', 'Still unsure – let’s talk about it'],
+    ],
+    goalLabel: 'What is your main goal?',
+    goalOptions: [
+      ['start', 'Build a first subscription'],
+      ['grow', 'Grow an existing subscription'],
+      ['system', 'More structure, less stress'],
+      ['other', 'Something else'],
+    ],
+    selectPlaceholder: 'Please select',
     email: 'Email',
     message: 'Message',
+    messageLabel: 'Tell us about yourself',
     messagePlaceholder: 'Tell us briefly where you stand and where you want to go.',
-    consent: (link) => ['I’ve read the ', 'privacy policy', ' and agree to my details being processed.'],
+    consent: ['I’ve read the ', 'privacy policy', ' and agree to my details being processed.'],
+    back: 'Back',
+    next: 'Next',
     submit: 'Send message',
     submitting: 'Sending …',
     successTitle: 'Got it.',
@@ -130,15 +196,15 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
     );
   }
 
-  const [before, linkText, after] = c.consent('/datenschutz');
+  const [before, linkText, after] = c.consent;
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="grid size-12 place-items-center rounded-2xl bg-[#d6fa43] text-[#15162d]">
         <ArrowUpRight className="size-5" />
       </div>
-      <h2 className="mt-7 text-3xl font-black leading-[.9] tracking-[-.06em]">Dein erster Schritt.</h2>
-      <div className="mt-6 flex items-center gap-2" aria-label={`Schritt ${step} von 3`}>{[1, 2, 3].map((n) => <span key={n} className={`h-1.5 flex-1 rounded-full ${n <= step ? 'bg-[#d6fa43]' : 'bg-white/15'}`} />)}</div>
+      <h2 className="mt-7 text-3xl font-black leading-[.9] tracking-[-.06em]">{c.firstStepTitle}</h2>
+      <div className="mt-6 flex items-center gap-2" aria-label={c.stepLabel(step)}>{[1, 2, 3].map((n) => <span key={n} className={`h-1.5 flex-1 rounded-full ${n <= step ? 'bg-[#d6fa43]' : 'bg-white/15'}`} />)}</div>
 
       <div className="mt-7 flex flex-col gap-4">
         <div className={step === 1 ? 'contents' : 'hidden'}>
@@ -155,25 +221,25 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
         </label>
 
         <div className="grid gap-4 sm:grid-cols-2">
-          <Field label="Alter" name="age" type="number" min="18" max="99" required />
-          <Field label="Land" name="country" placeholder="z. B. Deutschland" required />
+          <Field label={c.age} name="age" type="number" min="18" max="99" required />
+          <Field label={c.country} name="country" placeholder={c.countryPlaceholder} required />
         </div>
         </div>
 
         <div className={step === 2 ? 'contents' : 'hidden'}>
         <fieldset>
-          <legend className="mb-2 text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">Aktuelle oder geplante Subscription-Plattform</legend>
+          <legend className="mb-2 text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.platformLegend}</legend>
           <div className="grid grid-cols-2 gap-2">
             {platforms.map((platform) => <label key={platform.value} className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm has-[:checked]:border-[#d6fa43] has-[:checked]:bg-[#d6fa43]/10"><input required type="radio" name="platform" value={platform.value} className="sr-only" /><span className="grid size-7 place-items-center rounded-full bg-white"><Image src={platform.src} alt="" width={16} height={16} className="size-4 object-contain" /></span><span>{platform.label}</span></label>)}
           </div>
         </fieldset>
 
-        <Field label="Aktuelle Social-Media-Reichweite" name="reach" placeholder="z. B. noch keine oder ca. 12.000 Follower" required />
+        <Field label={c.reach} name="reach" placeholder={c.reachPlaceholder} required />
         </div>
 
         <div className={step === 3 ? 'contents' : 'hidden'}>
-        <SelectField label="Womit fühlst du dich wohl zu posten?" name="comfort" options={[['lifestyle','Nur nicht-explizite / Lifestyle-Inhalte'],['both','Lifestyle und explizite Inhalte'],['unsure','Noch unsicher – lass uns darüber sprechen']]} />
-        <SelectField label="Was ist dein Hauptziel?" name="goal" options={[['start','Erste Subscription aufbauen'],['grow','Bestehende Subscription wachsen lassen'],['system','Mehr Struktur und weniger Stress'],['other','Etwas anderes']]} />
+        <SelectField label={c.comfortLabel} name="comfort" options={c.comfortOptions} placeholder={c.selectPlaceholder} />
+        <SelectField label={c.goalLabel} name="goal" options={c.goalOptions} placeholder={c.selectPlaceholder} />
 
         <label className="block">
           <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.email}</span>
@@ -188,7 +254,7 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
         </label>
 
         <label className="block">
-          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">Erzähl uns von dir</span>
+          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.messageLabel}</span>
           <textarea
             name="message"
             required
@@ -230,8 +296,8 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
         )}
 
         <div className="mt-2 flex gap-2">
-          {step > 1 && <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value - 1); }} className="rounded-full border border-white/20 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10">Zurück</button>}
-          {step < 3 ? <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value + 1); }} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43]">Weiter <ArrowUpRight className="size-4" /></button> : <button type="submit" disabled={status === 'submitting'} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43] disabled:opacity-60">{status === 'submitting' ? c.submitting : c.submit}{status === 'submitting' ? <Loader2 className="size-4 animate-spin" /> : <ArrowUpRight className="size-4" />}</button>}
+          {step > 1 && <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value - 1); }} className="rounded-full border border-white/20 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10">{c.back}</button>}
+          {step < 3 ? <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value + 1); }} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43]">{c.next} <ArrowUpRight className="size-4" /></button> : <button type="submit" disabled={status === 'submitting'} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43] disabled:opacity-60">{status === 'submitting' ? c.submitting : c.submit}{status === 'submitting' ? <Loader2 className="size-4 animate-spin" /> : <ArrowUpRight className="size-4" />}</button>}
         </div>
       </div>
     </form>
@@ -242,6 +308,6 @@ function Field({ label, name, type = 'text', placeholder, min, max, required = f
   return <label className="block"><span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{label}</span><input name={name} type={type} min={min} max={max} required={required} placeholder={placeholder} className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none" /></label>;
 }
 
-function SelectField({ label, name, options }: { label: string; name: string; options: string[][] }) {
-  return <label className="block"><span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{label}</span><select name={name} required defaultValue="" className="w-full appearance-none rounded-xl border border-white/15 bg-[#252641] px-4 py-3 text-sm text-white focus:border-[#d6fa43] focus:outline-none"><option value="" disabled>Bitte auswählen</option>{options.map(([value, text]) => <option key={value} value={value}>{text}</option>)}</select></label>;
+function SelectField({ label, name, options, placeholder }: { label: string; name: string; options: Array<[string, string]>; placeholder: string }) {
+  return <label className="block"><span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{label}</span><select name={name} required defaultValue="" className="w-full appearance-none rounded-xl border border-white/15 bg-[#252641] px-4 py-3 text-sm text-white focus:border-[#d6fa43] focus:outline-none"><option value="" disabled>{placeholder}</option>{options.map(([value, text]) => <option key={value} value={value}>{text}</option>)}</select></label>;
 }

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" font-family="Arial, Helvetica, sans-serif">
+<defs></defs>
+
+    <rect width="1080" height="1920" fill="#6c35ed"/>
+    <text x="72" y="700" font-weight="800" font-size="22" letter-spacing="3.08" fill="#d6fa43">LOS GEHT'S</text>
+    <text x="72" y="820" font-weight="900" font-size="70" letter-spacing="-1.5" fill="#ffffff">Für Management</text>
+<text x="72" y="893.5" font-weight="900" font-size="70" letter-spacing="-1.5" fill="#ffffff">bewerben.</text>
+    <text x="72" y="960" font-weight="500" font-size="32" fill="#e3dbff">Kostenloses Erstgespräch,</text>
+<text x="72" y="1004.8" font-weight="500" font-size="32" fill="#e3dbff">unverbindlich.</text>
+    <rect x="72" y="1520" width="460" height="96" rx="48" fill="#d6fa43"/>
+  <text x="302" y="1578.88" font-weight="800" font-size="32" fill="#15162d" text-anchor="middle">Jetzt bewerben</text>
+    <g transform="translate(72 1792) scale(0.8750)">
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

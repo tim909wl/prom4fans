@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useLocalePreference } from '@/lib/use-locale-preference';
 import { SiteHeader } from '@/components/site-header';
 import { HeroSection } from '@/components/hero-section';
 import { StatementSection } from '@/components/statement-section';
@@ -18,17 +19,21 @@ import { SiteFooter } from '@/components/site-footer';
 import { getCopy, type Locale } from '@/lib/i18n';
 
 export function HomeShell({ initialLocale }: { initialLocale: Locale }) {
-  const [locale, setLocale] = useState(initialLocale);
+  const [locale, setLocale] = useLocalePreference(initialLocale);
   const c = getCopy(locale);
 
+  // Keep the visible URL and the <html lang> attribute in sync whenever the
+  // locale changes — from a manual switch, a saved preference, or browser
+  // detection on first load.
   useEffect(() => {
     document.documentElement.lang = locale;
+    if (window.location.pathname !== `/${locale}`) {
+      window.history.replaceState(null, '', `/${locale}`);
+    }
   }, [locale]);
 
   function handleLocaleChange(next: Locale) {
-    if (next === locale) return;
-    setLocale(next);
-    window.history.replaceState(null, '', `/${next}`);
+    if (next !== locale) setLocale(next);
   }
 
   return (

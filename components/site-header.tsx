@@ -4,9 +4,15 @@ import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
+import { FlagIcon } from '@/components/flag-icon';
 import type { Locale } from '@/lib/i18n';
 
-const targets = ['#services', '#process', '#about'];
+// Absolute (locale-prefixed) so the nav also works from pages other than the
+// homepage, e.g. /kontakt — a same-path fragment (like on the homepage itself)
+// just scrolls, a different path does a real navigation to the section.
+function navTargets(locale: Locale) {
+  return [`/${locale}#services`, `/${locale}#process`, `/${locale}#about`];
+}
 
 export function SiteHeader({
   locale,
@@ -26,6 +32,7 @@ export function SiteHeader({
   onLocaleChange: (next: Locale) => void;
 }) {
   const other = locale === 'de' ? 'en' : 'de';
+  const targets = navTargets(locale);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -71,9 +78,10 @@ export function SiteHeader({
           <button
             type="button"
             aria-label={`Sprache wechseln zu ${other}`}
-            className="hidden text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] sm:inline-block"
+            className="hidden items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] sm:inline-flex"
             onClick={() => onLocaleChange(other)}
           >
+            <FlagIcon locale={other} className="h-3 w-4 rounded-[2px]" />
             {other}
           </button>
           <Link
@@ -162,8 +170,9 @@ export function SiteHeader({
               onLocaleChange(other);
               setOpen(false);
             }}
-            className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 px-6 text-sm font-bold uppercase tracking-widest text-white/80 transition-colors hover:border-white/50 hover:text-white"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-6 text-sm font-bold uppercase tracking-widest text-white/80 transition-colors hover:border-white/50 hover:text-white"
           >
+            <FlagIcon locale={other} className="h-3.5 w-5 rounded-[2px]" />
             {other}
           </button>
         </div>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" font-family="Arial, Helvetica, sans-serif">
+<defs></defs>
+
+    <rect width="1080" height="1920" fill="#ff5e83"/>
+    <text x="72" y="700" font-weight="800" font-size="22" letter-spacing="3.08" fill="#15162d">DEINE MEINUNG</text>
+    <text x="72" y="820" font-weight="900" font-size="74" letter-spacing="-1.5" fill="#15162d">Postest du</text>
+<text x="72" y="897.7" font-weight="900" font-size="74" letter-spacing="-1.5" fill="#15162d">schon mit</text>
+<text x="72" y="975.4" font-weight="900" font-size="74" letter-spacing="-1.5" fill="#15162d">System?</text>
+    <rect x="72" y="1000" width="936" height="140" rx="20" fill="rgba(21,22,45,.08)" stroke="rgba(21,22,45,.25)"/>
+    <text x="540" y="1085" font-weight="800" font-size="26" letter-spacing="3" fill="#15162d" text-anchor="middle">NATIVEN POLL-STICKER HIER PLATZIEREN</text>
+    <g transform="translate(72 1792) scale(0.8750)">
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#15162d"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#15162d"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#15162d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

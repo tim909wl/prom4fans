@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350" font-family="Arial, Helvetica, sans-serif">
+<defs><linearGradient id="p4f-grad-11" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#3f1c94"/></linearGradient><linearGradient id="growth-grad" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#6c35ed"/><stop offset="100%" stop-color="#d6fa43"/></linearGradient></defs>
+
+    <rect width="1080" height="1350" fill="#15162d"/>
+    <g transform="translate(140 780) scale(2.1)" opacity="0.9">
+    <path d="M20,150 L100,150 L130,115 L210,115 L240,80 L320,80 L350,45 L383,20" fill="none" stroke="url(#growth-grad)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="383" cy="20" r="12" fill="#d6fa43"/>
+  </g>
+    <text x="72" y="200" font-weight="800" font-size="22" letter-spacing="3.08" fill="#d6fa43">KLARER ÜBERBLICK</text>
+    <text x="72" y="300" font-weight="900" font-size="88" letter-spacing="-1.5" fill="#ffffff">Was wächst,</text>
+<text x="72" y="389.76" font-weight="900" font-size="88" letter-spacing="-1.5" fill="#ffffff">wird sichtbar.</text>
+    <text x="72" y="470" font-weight="500" font-size="30" fill="#c9cadd">Wir richten Entscheidungen an deinem</text>
+<text x="72" y="512" font-weight="500" font-size="30" fill="#c9cadd">Weg aus — nicht an leeren Vanity Metrics.</text>
+    <g transform="translate(72 1222) scale(0.8750)">
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

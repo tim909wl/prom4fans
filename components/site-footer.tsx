@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
+import { FlagIcon } from '@/components/flag-icon';
 import type { Locale } from '@/lib/i18n';
 
 type FooterCopy = {
@@ -120,16 +121,18 @@ export function SiteFooter({
               <div className="mt-4 flex gap-3 text-sm font-bold uppercase tracking-widest">
                 <button
                   type="button"
-                  className={`-m-2 p-2 ${locale === 'de' ? 'text-[#d6fa43]' : 'text-[#c9cbda] hover:text-white'}`}
+                  className={`-m-2 flex items-center gap-1.5 p-2 ${locale === 'de' ? 'text-[#d6fa43]' : 'text-[#c9cbda] hover:text-white'}`}
                   onClick={() => changeLocale('de')}
                 >
+                  <FlagIcon locale="de" className="h-3 w-4 rounded-[2px]" />
                   DE
                 </button>
                 <button
                   type="button"
-                  className={`-m-2 p-2 ${locale === 'en' ? 'text-[#d6fa43]' : 'text-[#c9cbda] hover:text-white'}`}
+                  className={`-m-2 flex items-center gap-1.5 p-2 ${locale === 'en' ? 'text-[#d6fa43]' : 'text-[#c9cbda] hover:text-white'}`}
                   onClick={() => changeLocale('en')}
                 >
+                  <FlagIcon locale="en" className="h-3 w-4 rounded-[2px]" />
                   EN
                 </button>
               </div>

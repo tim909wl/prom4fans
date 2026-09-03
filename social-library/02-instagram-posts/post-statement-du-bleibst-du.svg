@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350" font-family="Arial, Helvetica, sans-serif">
+<defs><linearGradient id="p4f-grad-6" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#3f1c94"/></linearGradient></defs>
+
+    <rect width="1080" height="1350" fill="#15162d"/>
+    <text x="72" y="200" font-weight="800" font-size="22" letter-spacing="3.08" fill="#d6fa43">PROM4FANS</text>
+    <text x="72" y="300" font-weight="900" font-size="88" letter-spacing="-1.5" fill="#ffffff">Du bleibst du.</text>
+<text x="72" y="389.76" font-weight="900" font-size="88" letter-spacing="-1.5" fill="#ffffff">Wir bauen die</text>
+<text x="72" y="479.52" font-weight="900" font-size="88" letter-spacing="-1.5" fill="#ffffff">Struktur darum.</text>
+    
+    <g transform="translate(72 1222) scale(0.8750)">
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  <rect x="72" y="226" width="220" height="14" fill="#ff5e83" opacity="0"/>
+</svg>

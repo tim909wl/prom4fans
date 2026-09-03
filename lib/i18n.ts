@@ -88,6 +88,13 @@ const content = {
     founderBio: 'Positionierung, Plattformen und Wachstum – persönlich begleitet, von der ersten Idee bis zum ersten Ergebnis.',
     menuOpen: 'Menü öffnen',
     menuClose: 'Menü schließen',
+    backToHome: 'Zurück zur Startseite',
+    contactMetaTitle: 'Kontakt',
+    contactMetaDescription: 'Sprich mit Prom4Fans über eine Zusammenarbeit.',
+    contactEyebrow: 'Erstgespräch',
+    contactTitle: ['Lass uns', 'ehrlich sprechen.'],
+    contactLead: 'Erzähl uns, wo du gerade stehst und wohin du möchtest. Wir finden gemeinsam heraus, ob eine Zusammenarbeit Sinn ergibt.',
+    contactNote: 'Keine Einkommensgarantien, keine Verpflichtung durch deine Nachricht. Wir melden uns persönlich zurück.',
   },
   en: {
     nav: ['Services', 'How it works', 'About'],
@@ -175,6 +182,13 @@ const content = {
     founderBio: 'Positioning, platforms and growth – guided in person, from the first idea to the first result.',
     menuOpen: 'Open menu',
     menuClose: 'Close menu',
+    backToHome: 'Back to homepage',
+    contactMetaTitle: 'Contact',
+    contactMetaDescription: 'Talk to Prom4Fans about working together.',
+    contactEyebrow: 'Initial conversation',
+    contactTitle: ['Let’s talk,', 'honestly.'],
+    contactLead: 'Tell us where you stand right now and where you want to go. Together we’ll find out if working together makes sense.',
+    contactNote: 'No income guarantees, no obligation from your message. We get back to you in person.',
   },
 } as const;
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350" font-family="Arial, Helvetica, sans-serif">
+<defs><linearGradient id="p4f-grad-13" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#3f1c94"/></linearGradient></defs>
+
+    <rect width="1080" height="1350" fill="#ffffff"/>
+    <g>
+    <rect x="0" y="0" width="1080" height="680" rx="28" fill="#e9e6f3"/>
+    <g stroke="#b3aecb" stroke-width="4" fill="none">
+      <rect x="494" y="304" width="92" height="66" rx="10"/>
+      <circle cx="540" cy="338" r="17"/>
+    </g>
+    <text x="540" y="402" font-size="16" letter-spacing="3" font-weight="800" fill="#8f8aa6" text-anchor="middle">FOTO HIER EINSETZEN</text>
+  </g>
+    <text x="72" y="820" font-weight="900" font-size="120" fill="#6c35ed" opacity=".18">&#8220;</text>
+    <text x="72" y="920" font-weight="900" font-size="58" letter-spacing="-1.5" fill="#15162d">Hier steht ein</text>
+<text x="72" y="982.64" font-weight="900" font-size="58" letter-spacing="-1.5" fill="#15162d">Zitat oder Ergebnis</text>
+<text x="72" y="1045.28" font-weight="900" font-size="58" letter-spacing="-1.5" fill="#15162d">deiner Creatorin.</text>
+    <text x="72" y="1160" font-weight="700" font-size="28" fill="#8a8da3">Name, Rolle / Ergebnis</text>
+    <g transform="translate(72 1222) scale(0.8750)">
+    <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#p4f-grad-13)"/>
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#d6fa43" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

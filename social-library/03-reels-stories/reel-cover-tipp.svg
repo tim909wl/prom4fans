@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" font-family="Arial, Helvetica, sans-serif">
+<defs><linearGradient id="p4f-grad-16" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#3f1c94"/></linearGradient></defs>
+
+    <rect width="1080" height="1920" fill="#d6fa43"/>
+    <text x="72" y="560" font-weight="800" font-size="22" letter-spacing="3.08" fill="#15162d">3 LEARNINGS</text>
+    <text x="72" y="680" font-weight="900" font-size="62" letter-spacing="-1.5" fill="#15162d">3 Dinge, die</text>
+<text x="72" y="745.1" font-weight="900" font-size="62" letter-spacing="-1.5" fill="#15162d">wachsende</text>
+<text x="72" y="810.2" font-weight="900" font-size="62" letter-spacing="-1.5" fill="#15162d">Creator anders</text>
+<text x="72" y="875.3" font-weight="900" font-size="62" letter-spacing="-1.5" fill="#15162d">machen.</text>
+    <g>
+    <circle cx="100" cy="1104" r="28" fill="#15162d"/>
+    <path d="M87.68 1105.12 L96.64 1114.08 L113.44 1093.92" stroke="#d6fa43" stroke-width="5.04" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+      <text x="152" y="1120" font-weight="800" font-size="38" fill="#15162d">Positionierung vor Content</text><g>
+    <circle cx="100" cy="1234" r="28" fill="#15162d"/>
+    <path d="M87.68 1235.12 L96.64 1244.08 L113.44 1223.92" stroke="#d6fa43" stroke-width="5.04" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+      <text x="152" y="1250" font-weight="800" font-size="38" fill="#15162d">Rhythmus statt Zufall</text><g>
+    <circle cx="100" cy="1364" r="28" fill="#15162d"/>
+    <path d="M87.68 1365.12 L96.64 1374.08 L113.44 1353.92" stroke="#d6fa43" stroke-width="5.04" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+      <text x="152" y="1380" font-weight="800" font-size="38" fill="#15162d">Bindung statt Vanity Metrics</text>
+    <g transform="translate(72 1792) scale(0.8750)">
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#15162d"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#15162d"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#15162d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

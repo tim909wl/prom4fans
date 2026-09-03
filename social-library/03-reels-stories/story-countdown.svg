@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920" font-family="Arial, Helvetica, sans-serif">
+<defs></defs>
+
+    <rect width="1080" height="1920" fill="#15162d"/>
+    <text x="72" y="700" font-weight="800" font-size="22" letter-spacing="3.08" fill="#d6fa43">NÄCHSTE BEWERBUNGSRUNDE</text>
+    <text x="72" y="820" font-weight="900" font-size="72" letter-spacing="-1.5" fill="#ffffff">Nur noch</text>
+<text x="72" y="895.6" font-weight="900" font-size="72" letter-spacing="-1.5" fill="#ffffff">wenige Plätze</text>
+<text x="72" y="971.2" font-weight="900" font-size="72" letter-spacing="-1.5" fill="#ffffff">frei.</text>
+    <rect x="72" y="980" width="936" height="140" rx="20" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.25)"/>
+    <text x="540" y="1065" font-weight="800" font-size="26" letter-spacing="3" fill="#c9cadd" text-anchor="middle">NATIVEN COUNTDOWN-STICKER HIER PLATZIEREN</text>
+    <g transform="translate(72 1792) scale(0.8750)">
+    <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+    <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+    <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+  
+</svg>

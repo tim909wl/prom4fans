@@ -10,6 +10,7 @@ body { margin: 0; min-width: 320px; overflow-x: hidden; }
 
 .content { margin: 0 auto; max-width: 48rem; min-height: 70vh; padding: 7rem 1rem; }
 .content h1 { color: #15162d; font-size: clamp(2.75rem, 7vw, 5rem); font-weight: 800; letter-spacing: -.07em; line-height: .9; margin: 0 0 1.5rem; }
+.content h2 { color: #15162d; font-size: 1.15rem; font-weight: 800; letter-spacing: -.02em; margin: 0 0 .5rem; }
 .content p { color: #586078; line-height: 1.7; margin: 0 0 1rem; }
 .content a { color: #6c35ed; font-weight: 650; }
 

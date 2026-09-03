@@ -1,4 +1,9 @@
 import type { Metadata } from 'next';
-import { SiteFooter } from '@/components/site-footer';
+import { LegalPageShell } from '@/components/legal-page-shell';
+import { impressumCopy } from '@/lib/legal-copy';
+
 export const metadata: Metadata = { title: 'Impressum', robots: { index: false, follow: false } };
-export default function ImprintPage() { return <><main className="content"><h1>Impressum</h1><p className="mt-6 max-w-2xl text-lg text-[#586078]">Angaben gemäß § 5 TMG.</p><section className="mt-10 max-w-2xl space-y-6 text-[#35374b]"><div><h2>Betreiber</h2><p>Julius Blumberg<br />Prom4Fans<br />Brückenstr. 9<br />24220 Flintbek<br />Deutschland</p></div><div><h2>Kontakt</h2><p>Tel.: +49 177 3624269<br />E-Mail: contact@prom4fans.com</p></div><p>Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.</p><p className="text-sm text-[#7b7e92]">Stand: 02.09.2026</p></section></main><SiteFooter locale="de"/></>; }
+
+export default function ImprintPage() {
+  return <LegalPageShell copy={impressumCopy} />;
+}
