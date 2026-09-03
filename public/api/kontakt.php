@@ -22,6 +22,6 @@ $to = 'contact@prom4fans.com';
 $subject = 'Neue Bewerbung über prom4fans.com – ' . $name;
 $body = "Name: $name\nE-Mail: $email\nAlter: $age\nLand: $country\nPlattform: $platform\nReichweite: $reach\nPosting-Komfort: $comfort\nHauptziel: $goal\n\nErzähl uns von dir:\n$message";
 $headers = "From: Prom4Fans <contact@prom4fans.com>\r\nReply-To: $email\r\nContent-Type: text/plain; charset=UTF-8\r\n";
-if (!mail($to, '=?UTF-8?B?'.base64_encode($subject).'?=', $body, $headers)) { http_response_code(500); echo json_encode(['ok'=>false,'error'=>'send_failed']); exit; }
+if (!mail($to, '=?UTF-8?B?'.base64_encode($subject).'?=', $body, $headers, '-fcontact@prom4fans.com')) { http_response_code(500); echo json_encode(['ok'=>false,'error'=>'send_failed']); exit; }
 echo json_encode(['ok'=>true]);
 ?>
