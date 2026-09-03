@@ -34,11 +34,11 @@ jobs:
           npm run typecheck
           npm run lint
 
-      - name: Build standalone app
+      - name: Build static export
         env:
           FORM_SECRET: ${{ secrets.FORM_SECRET }}
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL || 'https://prom4fans.com' }}
-        run: npm run build
+        run: npm run static
 
       - name: Configure SSH
         run: |
@@ -47,28 +47,17 @@ jobs:
           sudo apt-get update -qq
           sudo apt-get install -y -qq sshpass
 
-      - name: Upload standalone app
+      - name: Upload static site
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           SSH_PORT: ${{ secrets.SSH_PORT || 22 }}
-          REMOTE_PATH: ${{ secrets.NODE_APP_PATH || 'prom4fans-app' }}
-          FORM_SECRET: ${{ secrets.FORM_SECRET }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_PORT: ${{ secrets.SMTP_PORT }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          SMTP_FROM: ${{ secrets.SMTP_FROM }}
-          CONTACT_RECEIVER_EMAIL: ${{ secrets.CONTACT_RECEIVER_EMAIL }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH || 'public' }}
         run: |
           export SSHPASS="$SSH_PASSWORD"
-          sshpass -e ssh -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p '$REMOTE_PATH'"
-          sshpass -e rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" .next/standalone/ "$SSH_USER@$SSH_HOST:$REMOTE_PATH/"
-          sshpass -e rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" .next/static/ "$SSH_USER@$SSH_HOST:$REMOTE_PATH/.next/static/"
-          sshpass -e rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" public/ "$SSH_USER@$SSH_HOST:$REMOTE_PATH/public/"
-          # Apache serves ~/public; keep the PHP form endpoint available there too.
-          sshpass -e ssh -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p public/api"
-          sshpass -e rsync -az -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" public/api/kontakt.php "$SSH_USER@$SSH_HOST:public/api/kontakt.php"
-          sshpass -e ssh -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "printf '%s\n' 'FORM_SECRET=$FORM_SECRET' 'SMTP_HOST=$SMTP_HOST' 'SMTP_PORT=$SMTP_PORT' 'SMTP_USER=$SMTP_USER' 'SMTP_PASS=$SMTP_PASS' 'SMTP_FROM=$SMTP_FROM' 'CONTACT_RECEIVER_EMAIL=$CONTACT_RECEIVER_EMAIL' > '$REMOTE_PATH/.env'"
-          timeout 45s sshpass -e ssh -n -o BatchMode=no -o StrictHostKeyChecking=yes -o ServerAliveInterval=15 -o ServerAliveCountMax=2 -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "export NVM_DIR=\"\$HOME/.xconfig/nvm\"; . \"\$NVM_DIR/nvm.sh\"; NODE20=\"\$(which node)\"; cd '$REMOTE_PATH'; ~/node_modules/.bin/pm2 delete prom4fans 2>/dev/null || true; FORM_SECRET=\"\$(grep '^FORM_SECRET=' .env | cut -d= -f2-)\" ~/node_modules/.bin/pm2 start server.js --name prom4fans --interpreter \"\$NODE20\" --update-env; ~/node_modules/.bin/pm2 save >/dev/null 2>&1 </dev/null; exit 0" || echo "PM2 restart command timed out; deployment files are already uploaded."
+          sshpass -e rsync -az --delete -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" out/ "$SSH_USER@$SSH_HOST:$REMOTE_PATH/"
+          # Keep the PHP form endpoint in the Apache webroot.
+          sshpass -e ssh -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p '$REMOTE_PATH/api'"
+          sshpass -e rsync -az -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" public/api/kontakt.php "$SSH_USER@$SSH_HOST:$REMOTE_PATH/api/kontakt.php"
+          sshpass -e rsync -az -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" .htaccess "$SSH_USER@$SSH_HOST:$REMOTE_PATH/.htaccess"
