@@ -1,34 +1,36 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
+import { Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://prom4fans.de';
 
 export const metadata: Metadata = {
-  title: 'Prom4Fans — Creator Management für Frauen 35+',
-  description: 'Persönliches Creator Management für Subscription-Plattformen. Social Growth, Strategie und transparente Konditionen.',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Prom4Fans',
+    template: '%s | Prom4Fans',
+  },
+  description: 'Prom4Fans – die Plattform für echte Fan-Momente.',
+  applicationName: 'Prom4Fans',
+  alternates: { canonical: '/' },
+  icons: { icon: '/favicon.svg' },
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    url: '/',
+    siteName: 'Prom4Fans',
+    title: 'Prom4Fans',
+    description: 'Die Plattform für echte Fan-Momente.',
+  },
+  twitter: { card: 'summary', title: 'Prom4Fans', description: 'Die Plattform für echte Fan-Momente.' },
+  robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="de">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
-  );
+export const viewport: Viewport = { themeColor: '#15162d', colorScheme: 'light' };
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="de" className={cn("font-sans", geist.variable)}><body>{children}</body></html>;
 }

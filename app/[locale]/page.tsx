@@ -1,0 +1,72 @@
+import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
+import { HomeShell } from '@/components/home-shell';
+import { locales, type Locale } from '@/lib/i18n';
+
+const seo: Record<Locale, { title: string; description: string }> = {
+  de: {
+    title: 'Creator Management mit Klarheit',
+    description:
+      'Wir helfen dir, aus Persönlichkeit, Content und Community ein tragfähiges Subscription-Business zu machen.',
+  },
+  en: {
+    title: 'Creator management with clarity',
+    description: 'We help turn personality, content and community into a sustainable subscription business.',
+  },
+};
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+// Only 'de' and 'en' are valid locale segments — anything else should be a real
+// 404 instead of being dynamically rendered and only failing inside the page.
+export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const copy = locales.includes(locale) ? seo[locale] : seo.de;
+  const fullTitle = `Prom4Fans – ${copy.title}`;
+
+  return {
+    title: copy.title,
+    description: copy.description,
+    alternates: {
+      canonical: `/${locale}`,
+      languages: { de: '/de', en: '/en', 'x-default': '/de' },
+    },
+    openGraph: {
+      locale: locale === 'de' ? 'de_DE' : 'en_US',
+      url: `/${locale}`,
+      title: fullTitle,
+      description: copy.description,
+    },
+    twitter: { title: fullTitle, description: copy.description },
+  };
+}
+
+export default async function LocaleHome({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params;
+  if (!locales.includes(locale)) notFound();
+  const copy = seo[locale];
+
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Prom4Fans',
+    url: `https://prom4fans.de/${locale}`,
+    description: copy.description,
+    address: { '@type': 'PostalAddress', addressLocality: 'Flintbek', addressCountry: 'DE' },
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <HomeShell initialLocale={locale} />
+    </>
+  );
+}

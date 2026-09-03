@@ -1,0 +1,13 @@
+<svg viewBox="0 0 300 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Prom4Fans">
+  <defs>
+    <linearGradient id="p4f-grad-l" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#3f1c94"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#p4f-grad-l)"/>
+  <path d="M20 16 H32 A9 9 0 0 1 32 34 H20 Z" fill="#ffffff"/>
+  <rect x="20" y="16" width="9" height="34" rx="3" fill="#ffffff"/>
+  <path d="M44 24 L52 16 M44 16 L52 16 L52 24" stroke="#d6fa43" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="78" y="40" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="27" letter-spacing="1.6" fill="#6c35ed">PROM4FANS</text>
+</svg>
