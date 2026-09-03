@@ -7,11 +7,11 @@ const seo: Record<Locale, { title: string; description: string }> = {
   de: {
     title: 'Creator Management mit Klarheit',
     description:
-      'Wir helfen dir, aus Persönlichkeit, Content und Community ein tragfähiges Subscription-Business zu machen.',
+      'Creator Management für Frauen 35+: klare Positionierung, Content und nachhaltige Subscription-Strukturen.',
   },
   en: {
     title: 'Creator management with clarity',
-    description: 'We help turn personality, content and community into a sustainable subscription business.',
+    description: 'Creator management for women 35+: clear positioning, content and sustainable subscription structures.',
   },
 };
 

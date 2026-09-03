@@ -6,6 +6,7 @@ import { HeroSection } from '@/components/hero-section';
 import { StatementSection } from '@/components/statement-section';
 import { ServicesSection } from '@/components/services-section';
 import { OfferSection } from '@/components/offer-section';
+import { PricingSection } from '@/components/pricing-section';
 import { PhoneStage } from '@/components/phone-stage';
 import { DashboardSection } from '@/components/dashboard-section';
 import { ProcessSection } from '@/components/process-section';
@@ -58,6 +59,7 @@ export function HomeShell({ initialLocale }: { initialLocale: Locale }) {
         <StatementSection statement={c.statement} />
         <ServicesSection eyebrow={c.servicesEyebrow} title={c.servicesTitle} services={c.services} />
         <OfferSection eyebrow={c.offerEyebrow} title={c.offerTitle} items={c.offerItems} />
+        <PricingSection locale={locale} />
         <PhoneStage
           eyebrow={c.phoneEyebrow}
           title={c.phoneTitle}
