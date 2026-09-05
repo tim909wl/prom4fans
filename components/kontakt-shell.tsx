@@ -8,7 +8,7 @@ import { useLocalePreference } from '@/lib/use-locale-preference';
 import { getCopy } from '@/lib/i18n';
 import { impressumCopy, datenschutzCopy } from '@/lib/legal-copy';
 
-export function KontaktShell({ token }: { token: string }) {
+export function KontaktShell() {
   const [locale, setLocale] = useLocalePreference('de');
   const c = getCopy(locale);
   const other = locale === 'de' ? 'en' : 'de';
@@ -20,9 +20,6 @@ export function KontaktShell({ token }: { token: string }) {
 
   return (
     <>
-      {/* Deliberately not the full SiteHeader here — this page is a
-          conversion step, so the header only offers a way back and the
-          language switch, not the full section navigation. */}
       <header className="sticky top-0 z-50 border-b border-[#e8e5ef]/80 bg-[#fbfaf8]/95 backdrop-blur">
         <div className="mx-auto flex h-20 w-[min(100%-2rem,78rem)] items-center justify-between">
           <Link
@@ -65,7 +62,7 @@ export function KontaktShell({ token }: { token: string }) {
           </div>
 
           <aside className="rounded-3xl bg-[#15162d] p-7 text-white shadow-[0_28px_70px_rgba(21,22,45,.16)] md:p-9">
-            <ContactForm token={token} locale={locale} />
+            <ContactForm locale={locale} />
           </aside>
         </section>
       </main>
