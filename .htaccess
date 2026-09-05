@@ -5,6 +5,8 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # Canonical HTTPS + www host.
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   RewriteCond %{HTTP_HOST} !^www\. [NC]
@@ -12,11 +14,11 @@ DirectoryIndex index.html
 
   RewriteRule ^$ index.html [END]
 
-  # Next static export writes clean routes as .html files. Resolve both top-level
-  # and nested routes (for example /de/creator-management) without exposing the
-  # .html suffix. Assets and real directories are left untouched.
+  # Next static export may create both /de.html and a /de/ directory when
+  # nested pages such as /de/creator-management exist. Apache would otherwise
+  # treat /de as the directory and, with directory listings disabled, return
+  # 403. Prefer the matching exported HTML file whenever it exists.
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
   RewriteCond %{REQUEST_FILENAME}.html -f
   RewriteRule ^(.+?)/?$ $1.html [END]
 </IfModule>
