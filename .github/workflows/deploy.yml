@@ -42,8 +42,7 @@ jobs:
 
           # Next's static export writes clean routes as .html files. On this
           # Apache host, nested routes also create same-named directories.
-          # Give every route a physical DirectoryIndex so /de, /kontakt and
-          # nested pages such as /de/creator-management cannot become 403s.
+          # Give every route a physical DirectoryIndex as a fallback.
           while IFS= read -r -d '' file; do
             rel="${file#out/}"
             route="${rel%.html}"
@@ -75,3 +74,17 @@ jobs:
           sshpass -e ssh -o StrictHostKeyChecking=yes -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "mkdir -p '$REMOTE_PATH/api'"
           sshpass -e rsync -az -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" public/api/kontakt.php "$SSH_USER@$SSH_HOST:$REMOTE_PATH/api/kontakt.php"
           sshpass -e rsync -az -e "ssh -o StrictHostKeyChecking=yes -p $SSH_PORT" .htaccess "$SSH_USER@$SSH_HOST:$REMOTE_PATH/.htaccess"
+
+      - name: Verify production routes
+        run: |
+          sleep 3
+          for url in \
+            https://www.prom4fans.com/de \
+            https://www.prom4fans.com/en \
+            https://www.prom4fans.com/kontakt \
+            https://www.prom4fans.com/de/creator-management \
+            https://www.prom4fans.com/de/onlyfans-management; do
+            status="$(curl -L -sS -o /dev/null -w '%{http_code}' "$url")"
+            echo "$url -> $status"
+            test "$status" = "200"
+          done
