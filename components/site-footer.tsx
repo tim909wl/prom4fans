@@ -22,7 +22,9 @@ const copy: Record<Locale, FooterCopy> = {
   de: {
     navTitle: 'Navigation',
     nav: [
-      { label: 'Leistung', href: '/de#services' },
+      { label: 'Creator Management', href: '/de/creator-management' },
+      { label: 'OnlyFans Management', href: '/de/onlyfans-management' },
+      { label: 'Leistungen', href: '/de#services' },
       { label: 'So läuft’s', href: '/de#process' },
       { label: 'Über uns', href: '/de#about' },
       { label: 'Kontakt', href: '/kontakt' },
@@ -41,6 +43,8 @@ const copy: Record<Locale, FooterCopy> = {
   en: {
     navTitle: 'Navigation',
     nav: [
+      { label: 'Creator Management', href: '/en/creator-management' },
+      { label: 'OnlyFans Management', href: '/en/onlyfans-management' },
       { label: 'Services', href: '/en#services' },
       { label: 'How it works', href: '/en#process' },
       { label: 'About', href: '/en#about' },
@@ -54,7 +58,7 @@ const copy: Record<Locale, FooterCopy> = {
     ],
     languageTitle: 'Language',
     contact: 'Start a conversation',
-    note: 'Strategie, Content und Wachstum für Creator, die Struktur wollen.',
+    note: 'Strategy, content and growth for creators who want a clear system.',
   },
 };
 
