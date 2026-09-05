@@ -143,6 +143,7 @@ export function SiteHeader({
       <div
         id="mobile-nav"
         aria-hidden={!open}
+        inert={!open}
         className={cn(
           'fixed inset-0 z-50 flex flex-col bg-[#15162d] transition-opacity duration-300 ease-out md:hidden',
           open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
