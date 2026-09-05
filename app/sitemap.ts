@@ -37,12 +37,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  const staticPages: MetadataRoute.Sitemap = [
+  return [
+    ...localePages,
+    ...servicePages,
     { url: `${base}/kontakt`, lastModified, changeFrequency: 'monthly', priority: 0.75 },
-    { url: `${base}/impressum`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${base}/datenschutz`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
-    { url: `${base}/nutzungsbedingungen`, lastModified, changeFrequency: 'yearly', priority: 0.2 },
   ];
-
-  return [...localePages, ...servicePages, ...staticPages];
 }
