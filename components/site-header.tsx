@@ -37,8 +37,19 @@ export function SiteHeader({
 
   useEffect(() => {
     if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false);
+    };
+
     document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, [open]);
 
   // Full-screen menu should never survive a resize back to desktop.
@@ -51,91 +62,103 @@ export function SiteHeader({
 
   return (
     <>
-    <header className="sticky top-0 z-50 border-b border-[#e8e5ef]/80 bg-[#fbfaf8]/95 backdrop-blur">
-      <div className="mx-auto flex h-20 w-[min(100%-2rem,90rem)] items-center justify-between">
-        <Link
-          href={`/${locale}`}
-          className="font-black tracking-[.1em] text-[#6c35ed] transition-transform hover:scale-[1.03]"
-          onClick={() => setOpen(false)}
-        >
-          PROM4FANS
-        </Link>
-
-        <nav aria-label={navAriaLabel} className="hidden gap-8 text-base font-semibold text-[#3d3f57] md:flex">
-          {nav.map((item, index) => (
-            <a
-              className="group relative py-1 transition-colors hover:text-[#6c35ed]"
-              key={item}
-              href={targets[index]}
-            >
-              {item}
-              <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#6c35ed] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            aria-label={`Sprache wechseln zu ${other}`}
-            className="hidden items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] sm:inline-flex"
-            onClick={() => onLocaleChange(other)}
-          >
-            <FlagIcon locale={other} className="h-3 w-4 rounded-[2px]" />
-            {other}
-          </button>
+      <header className="sticky top-0 z-50 border-b border-[#e8e5ef]/80 bg-[#fbfaf8]/95 backdrop-blur">
+        <div className="mx-auto flex h-20 w-[min(100%-2rem,90rem)] items-center justify-between">
           <Link
-            className="hidden h-10 items-center rounded-full bg-[#15162d] px-4 text-sm font-bold text-white transition-colors hover:bg-[#6c35ed] md:inline-flex"
-            href="/kontakt"
+            href={`/${locale}`}
+            className="font-black tracking-[.1em] text-[#6c35ed] transition-transform hover:scale-[1.03]"
+            onClick={() => setOpen(false)}
           >
-            {cta}
+            PROM4FANS
           </Link>
-          <button
-            type="button"
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            aria-label={open ? menuCloseLabel : menuOpenLabel}
-            onClick={() => setOpen((value) => !value)}
-            className={cn(
-              'relative z-[60] grid size-11 place-items-center rounded-full border transition-colors md:hidden',
-              open
-                ? 'border-transparent text-white'
-                : 'border-[#e8e5ef] text-[#15162d] hover:border-[#6c35ed] hover:text-[#6c35ed]',
-            )}
-          >
-            <span className="relative grid size-5 place-items-center">
-              <Menu
-                aria-hidden
-                className={cn(
-                  'absolute size-5 transition-all duration-300',
-                  open ? 'rotate-45 opacity-0' : 'rotate-0 opacity-100',
-                )}
-              />
-              <X
-                aria-hidden
-                className={cn(
-                  'absolute size-5 transition-all duration-300',
-                  open ? 'rotate-0 opacity-100' : '-rotate-45 opacity-0',
-                )}
-              />
-            </span>
-          </button>
-        </div>
-      </div>
-    </header>
 
-    {/* Full-screen mobile nav overlay — kept OUTSIDE <header> on purpose: header has
-        backdrop-blur, and a backdrop-filter ancestor becomes the containing block for
-        position:fixed descendants, which broke "inset-0" down to the header's own
-        80px box instead of the viewport. */}
+          <nav aria-label={navAriaLabel} className="hidden gap-8 text-base font-semibold text-[#3d3f57] md:flex">
+            {nav.map((item, index) => (
+              <a
+                className="group relative py-1 transition-colors hover:text-[#6c35ed]"
+                key={item}
+                href={targets[index]}
+              >
+                {item}
+                <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#6c35ed] transition-transform duration-300 group-hover:scale-x-100" />
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label={`Sprache wechseln zu ${other}`}
+              className="hidden items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] sm:inline-flex"
+              onClick={() => onLocaleChange(other)}
+            >
+              <FlagIcon locale={other} className="h-3 w-4 rounded-[2px]" />
+              {other}
+            </button>
+            <Link
+              className="hidden h-10 items-center rounded-full bg-[#15162d] px-4 text-sm font-bold text-white transition-colors hover:bg-[#6c35ed] md:inline-flex"
+              href="/kontakt"
+            >
+              {cta}
+            </Link>
+            <button
+              type="button"
+              aria-expanded={open}
+              aria-controls="mobile-nav"
+              aria-label={open ? menuCloseLabel : menuOpenLabel}
+              onClick={() => setOpen((value) => !value)}
+              className={cn(
+                'relative z-[60] grid size-11 place-items-center rounded-full border transition-colors md:hidden',
+                open
+                  ? 'border-transparent text-white'
+                  : 'border-[#e8e5ef] text-[#15162d] hover:border-[#6c35ed] hover:text-[#6c35ed]',
+              )}
+            >
+              <span className="relative grid size-5 place-items-center">
+                <Menu
+                  aria-hidden
+                  className={cn(
+                    'absolute size-5 transition-all duration-300',
+                    open ? 'rotate-45 opacity-0' : 'rotate-0 opacity-100',
+                  )}
+                />
+                <X
+                  aria-hidden
+                  className={cn(
+                    'absolute size-5 transition-all duration-300',
+                    open ? 'rotate-0 opacity-100' : '-rotate-45 opacity-0',
+                  )}
+                />
+              </span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Full-screen mobile nav overlay — kept OUTSIDE <header> on purpose: header has
+          backdrop-blur, and a backdrop-filter ancestor becomes the containing block for
+          position:fixed descendants, which broke "inset-0" down to the header's own
+          80px box instead of the viewport. The overlay has its own close button because
+          it sits above the header's stacking context on mobile. */}
       <div
         id="mobile-nav"
+        aria-hidden={!open}
         className={cn(
           'fixed inset-0 z-50 flex flex-col bg-[#15162d] transition-opacity duration-300 ease-out md:hidden',
           open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
         )}
       >
-        <div className="h-20 shrink-0" aria-hidden />
+        <div className="mx-auto flex h-20 w-[min(100%-2rem,90rem)] shrink-0 items-center justify-end">
+          <button
+            type="button"
+            aria-label={menuCloseLabel}
+            onClick={() => setOpen(false)}
+            className="grid size-11 place-items-center rounded-full border border-white/20 text-white transition-colors hover:border-white/50 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#15162d]"
+          >
+            <X aria-hidden className="size-5" />
+          </button>
+        </div>
+
         <nav
           aria-label={navAriaLabel}
           className="flex flex-1 flex-col justify-center gap-1 px-8 pb-16"
