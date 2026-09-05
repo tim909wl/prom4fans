@@ -34,11 +34,23 @@ const phoneAlt = {
 
 type Notification = (typeof notifications)[number];
 
-const STACK_SIZE = 4;
-const ROTATE_MS = 2600;
+const VISIBLE_STACK_SIZE = 4;
+const STACK_BUFFER_SIZE = VISIBLE_STACK_SIZE + 1;
+const ROTATE_MS = 3200;
 
-/** Rotates through the notification list, keeping at most STACK_SIZE entries — newest
- *  on top, oldest dropped off the back, mirroring an iOS notification stack. */
+const stackPositionClasses = [
+  'translate-y-0 scale-100 opacity-100',
+  '-translate-y-[54px] scale-[.99] opacity-[.98] sm:-translate-y-[64px] md:-translate-y-[72px]',
+  '-translate-y-[108px] scale-[.98] opacity-[.96] sm:-translate-y-[128px] md:-translate-y-[144px]',
+  '-translate-y-[162px] scale-[.97] opacity-[.92] sm:-translate-y-[192px] md:-translate-y-[216px]',
+  '-translate-y-[216px] scale-[.95] opacity-0 sm:-translate-y-[256px] md:-translate-y-[288px]',
+] as const;
+
+/**
+ * Keeps one invisible buffer card behind the visible stack. When a new card
+ * arrives, the oldest visible card can therefore animate out before it is
+ * removed on the following tick instead of popping away abruptly.
+ */
 function useNotificationStack() {
   const [stack, setStack] = useState<Array<{ id: number; item: Notification }>>(() => [
     { id: 0, item: notifications[0] },
@@ -51,7 +63,7 @@ function useNotificationStack() {
       const item = notifications[cursor.current % notifications.length];
       cursor.current += 1;
       const id = nextId.current++;
-      setStack((prev) => [{ id, item }, ...prev].slice(0, STACK_SIZE));
+      setStack((prev) => [{ id, item }, ...prev].slice(0, STACK_BUFFER_SIZE));
     }, ROTATE_MS);
     return () => window.clearInterval(timer);
   }, []);
@@ -62,14 +74,14 @@ function useNotificationStack() {
 function NotificationCard({ item, locale }: { item: Notification; locale: 'de' | 'en' }) {
   const [name, messageKey, platform] = item;
   return (
-    <div className="flex min-h-12 items-center gap-1.5 rounded-xl border border-white/55 bg-white/95 p-1.5 text-[#16172c] shadow-xl backdrop-blur sm:gap-2 sm:rounded-2xl sm:p-2.5">
+    <div className="flex h-12 items-center gap-1.5 overflow-hidden rounded-xl border border-white/55 bg-white/95 p-1.5 text-[#16172c] shadow-xl backdrop-blur sm:h-14 sm:gap-2 sm:rounded-2xl sm:p-2.5 md:h-16">
       <span className="grid size-6 shrink-0 place-items-center rounded-full bg-white p-1 shadow-sm sm:size-7 md:size-8 md:p-1.5">
         <Image src={icons[platform]} alt="" width={18} height={18} className="object-contain" />
       </span>
-      <p className="text-[9px] leading-tight sm:text-[10px] md:text-[11px]">
+      <p className="min-w-0 flex-1 text-[9px] leading-tight sm:text-[10px] md:text-[11px]">
         <b className="block">{name}</b>{messages[locale][messageKey]}
       </p>
-      <span className="ml-auto hidden text-[9px] text-slate-400 sm:inline">{now[locale]}</span>
+      <span className="ml-auto hidden shrink-0 text-[9px] text-slate-400 sm:inline">{now[locale]}</span>
     </div>
   );
 }
@@ -143,7 +155,6 @@ export function PhoneStage({
               src="/images/creator-window.png"
               alt={phoneAlt[locale]}
               fill
-              priority
               sizes="(max-width: 768px) 40vw, 336px"
               className="object-cover"
             />
@@ -155,16 +166,16 @@ export function PhoneStage({
               <span className="mt-1 block text-[8px] font-semibold tracking-wide text-white/90 capitalize sm:text-[9px] md:mt-2 md:text-[11px]">{date || ' '}</span>
             </div>
             <div className="absolute inset-x-2 bottom-2 z-20 sm:inset-x-3 sm:bottom-3">
-              <div className="relative h-[190px] sm:h-[260px] md:h-[330px]">
+              <div className="relative h-[210px] sm:h-[285px] md:h-[360px]">
                 {stack.map(({ id, item }, index) => (
                   <div
                     key={id}
-                    className={cn('absolute inset-x-0 bottom-0 transition-all duration-500 ease-out', index === 0 && 'notification-enter')}
-                    style={{
-                      transform: `translateY(${-index * 54}px)`,
-                      opacity: 1,
-                      zIndex: STACK_SIZE - index,
-                    }}
+                    className={cn(
+                      'absolute inset-x-0 bottom-0 origin-bottom transition-[transform,opacity] duration-700 ease-out will-change-transform',
+                      stackPositionClasses[index] ?? stackPositionClasses[STACK_BUFFER_SIZE - 1],
+                      index === 0 && 'notification-enter',
+                    )}
+                    style={{ zIndex: STACK_BUFFER_SIZE - index }}
                   >
                     <NotificationCard item={item} locale={locale} />
                   </div>
@@ -175,9 +186,14 @@ export function PhoneStage({
         </div>
       </div>
       <style jsx>{`
-        @keyframes notification-enter { 0% { opacity: 0; transform: translateY(28px) scale(.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
-        .notification-enter { animation: notification-enter .5s cubic-bezier(.2,.8,.2,1) both; }
-        @media (prefers-reduced-motion: reduce) { .notification-enter { animation: none; } }
+        @keyframes notification-enter {
+          0% { opacity: 0; transform: translateY(22px) scale(.97); }
+          100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .notification-enter { animation: notification-enter .65s cubic-bezier(.2,.8,.2,1) both; }
+        @media (prefers-reduced-motion: reduce) {
+          .notification-enter { animation: none; }
+        }
       `}</style>
     </section>
   );
