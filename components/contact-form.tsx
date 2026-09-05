@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { ArrowUpRight, Check, Loader2 } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 
@@ -141,16 +141,48 @@ const copy: Record<Locale, {
   },
 };
 
-export function ContactForm({ token, locale = 'de' }: { token: string; locale?: Locale }) {
+export function ContactForm({ locale = 'de' }: { locale?: Locale }) {
   const c = copy[locale];
+  const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<Status>('idle');
   const [errorKey, setErrorKey] = useState<string | null>(null);
   const [step, setStep] = useState(1);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    let active = true;
+    fetch('/api/kontakt.php?token=1', { credentials: 'same-origin', cache: 'no-store' })
+      .then((res) => res.ok ? res.json() : Promise.reject())
+      .then((json) => { if (active && typeof json.token === 'string') setToken(json.token); })
+      .catch(() => { if (active) setToken(null); });
+    return () => { active = false; };
+  }, []);
+
+  function goNext() {
+    const form = formRef.current;
+    if (!form) return;
+    const scope = form.querySelector<HTMLElement>(`[data-step="${step}"]`);
+    const controls = Array.from(scope?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>('input, select, textarea') ?? []);
+    const invalid = controls.find((control) => !control.checkValidity());
+    if (invalid) {
+      invalid.reportValidity();
+      return;
+    }
+    setErrorKey(null);
+    setStatus('idle');
+    setStep((value) => Math.min(3, value + 1));
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus('submitting');
     setErrorKey(null);
+
+    if (!token) {
+      setErrorKey('spam_check_failed');
+      setStatus('error');
+      return;
+    }
 
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -158,15 +190,20 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
     try {
       const res = await fetch('/api/kontakt.php', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: data.get('name'),
           email: data.get('email'),
           message: data.get('message'),
-          age: data.get('age'), country: data.get('country'), platform: data.get('platform'),
-          reach: data.get('reach'), comfort: data.get('comfort'), goal: data.get('goal'),
+          age: data.get('age'),
+          country: data.get('country'),
+          platform: data.get('platform'),
+          reach: data.get('reach'),
+          comfort: data.get('comfort'),
+          goal: data.get('goal'),
           consent: data.get('consent') === 'on',
-          company: data.get('company'), // honeypot
+          company: data.get('company'),
           token,
           locale,
         }),
@@ -199,7 +236,7 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
   const [before, linkText, after] = c.consent;
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <div className="grid size-12 place-items-center rounded-2xl bg-[#d6fa43] text-[#15162d]">
         <ArrowUpRight className="size-5" />
       </div>
@@ -207,97 +244,56 @@ export function ContactForm({ token, locale = 'de' }: { token: string; locale?: 
       <div className="mt-6 flex items-center gap-2" aria-label={c.stepLabel(step)}>{[1, 2, 3].map((n) => <span key={n} className={`h-1.5 flex-1 rounded-full ${n <= step ? 'bg-[#d6fa43]' : 'bg-white/15'}`} />)}</div>
 
       <div className="mt-7 flex flex-col gap-4">
-        <div className={step === 1 ? 'contents' : 'hidden'}>
-        <label className="block">
-          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.name}</span>
-          <input
-            name="name"
-            type="text"
-            required
-            maxLength={100}
-            autoComplete="name"
-            className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none"
-          />
-        </label>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label={c.age} name="age" type="number" min="18" max="99" required />
-          <Field label={c.country} name="country" placeholder={c.countryPlaceholder} required />
-        </div>
-        </div>
-
-        <div className={step === 2 ? 'contents' : 'hidden'}>
-        <fieldset>
-          <legend className="mb-2 text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.platformLegend}</legend>
-          <div className="grid grid-cols-2 gap-2">
-            {platforms.map((platform) => <label key={platform.value} className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm has-[:checked]:border-[#d6fa43] has-[:checked]:bg-[#d6fa43]/10"><input required type="radio" name="platform" value={platform.value} className="sr-only" /><span className="grid size-7 place-items-center rounded-full bg-white"><Image src={platform.src} alt="" width={16} height={16} className="size-4 object-contain" /></span><span>{platform.label}</span></label>)}
+        <div data-step="1" className={step === 1 ? 'contents' : 'hidden'}>
+          <label className="block">
+            <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.name}</span>
+            <input name="name" type="text" required maxLength={100} autoComplete="name" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none" />
+          </label>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label={c.age} name="age" type="number" min="18" max="99" required />
+            <Field label={c.country} name="country" placeholder={c.countryPlaceholder} required />
           </div>
-        </fieldset>
-
-        <Field label={c.reach} name="reach" placeholder={c.reachPlaceholder} required />
         </div>
 
-        <div className={step === 3 ? 'contents' : 'hidden'}>
-        <SelectField label={c.comfortLabel} name="comfort" options={c.comfortOptions} placeholder={c.selectPlaceholder} />
-        <SelectField label={c.goalLabel} name="goal" options={c.goalOptions} placeholder={c.selectPlaceholder} />
+        <div data-step="2" className={step === 2 ? 'contents' : 'hidden'}>
+          <fieldset>
+            <legend className="mb-2 text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.platformLegend}</legend>
+            <div className="grid grid-cols-2 gap-2">
+              {platforms.map((platform) => <label key={platform.value} className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-sm has-[:checked]:border-[#d6fa43] has-[:checked]:bg-[#d6fa43]/10"><input required type="radio" name="platform" value={platform.value} className="sr-only" /><span className="grid size-7 place-items-center rounded-full bg-white"><Image src={platform.src} alt="" width={16} height={16} className="size-4 object-contain" /></span><span>{platform.label}</span></label>)}
+            </div>
+          </fieldset>
+          <Field label={c.reach} name="reach" placeholder={c.reachPlaceholder} required />
+        </div>
 
-        <label className="block">
-          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.email}</span>
-          <input
-            name="email"
-            type="email"
-            required
-            maxLength={200}
-            autoComplete="email"
-            className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none"
-          />
-        </label>
-
-        <label className="block">
-          <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.messageLabel}</span>
-          <textarea
-            name="message"
-            required
-            minLength={10}
-            maxLength={3000}
-            rows={4}
-            placeholder={c.messagePlaceholder}
-            className="w-full resize-none rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none"
-          />
-        </label>
-
-        {/* Honeypot — hidden from sighted users and keyboard/tab order, but present for bots that fill every field. */}
-        <div aria-hidden className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
-          <label>
-            Company
-            <input name="company" type="text" tabIndex={-1} autoComplete="off" />
+        <div data-step="3" className={step === 3 ? 'contents' : 'hidden'}>
+          <SelectField label={c.comfortLabel} name="comfort" options={c.comfortOptions} placeholder={c.selectPlaceholder} />
+          <SelectField label={c.goalLabel} name="goal" options={c.goalOptions} placeholder={c.selectPlaceholder} />
+          <label className="block">
+            <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.email}</span>
+            <input name="email" type="email" required maxLength={200} autoComplete="email" className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none" />
+          </label>
+          <label className="block">
+            <span className="mb-1.5 block text-xs font-bold uppercase tracking-wide text-[#aeb0c3]">{c.messageLabel}</span>
+            <textarea name="message" required minLength={10} maxLength={3000} rows={4} placeholder={c.messagePlaceholder} className="w-full resize-none rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-[#6c6e88] focus:border-[#d6fa43] focus:outline-none" />
+          </label>
+          <div aria-hidden className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+            <label>Company<input name="company" type="text" tabIndex={-1} autoComplete="off" /></label>
+          </div>
+          <label className="flex items-start gap-2.5 text-xs leading-relaxed text-[#aeb0c3]">
+            <input name="consent" type="checkbox" required className="mt-0.5 size-4 shrink-0 rounded border-white/25 bg-white/5 accent-[#d6fa43]" />
+            <span>{before}<Link href="/datenschutz" className="underline hover:text-white">{linkText}</Link>{after}</span>
           </label>
         </div>
 
-        <label className="flex items-start gap-2.5 text-xs leading-relaxed text-[#aeb0c3]">
-          <input
-            name="consent"
-            type="checkbox"
-            required
-            className="mt-0.5 size-4 shrink-0 rounded border-white/25 bg-white/5 accent-[#d6fa43]"
-          />
-          <span>
-            {before}
-            <Link href="/datenschutz" className="underline hover:text-white">{linkText}</Link>
-            {after}
-          </span>
-        </label>
-        </div>
-
-        {status === 'error' && (
-          <p role="alert" className="text-sm font-semibold text-[#ff8fa3]">
-            {c.errors[errorKey ?? 'default'] ?? c.errors.default}
-          </p>
-        )}
+        {status === 'error' && <p role="alert" className="text-sm font-semibold text-[#ff8fa3]">{c.errors[errorKey ?? 'default'] ?? c.errors.default}</p>}
 
         <div className="mt-2 flex gap-2">
           {step > 1 && <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value - 1); }} className="rounded-full border border-white/20 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10">{c.back}</button>}
-          {step < 3 ? <button type="button" onClick={() => { setErrorKey(null); setStatus('idle'); setStep((value) => value + 1); }} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43]">{c.next} <ArrowUpRight className="size-4" /></button> : <button type="submit" disabled={status === 'submitting'} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43] disabled:opacity-60">{status === 'submitting' ? c.submitting : c.submit}{status === 'submitting' ? <Loader2 className="size-4 animate-spin" /> : <ArrowUpRight className="size-4" />}</button>}
+          {step < 3 ? (
+            <button type="button" onClick={goNext} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43]">{c.next}<ArrowUpRight className="size-4" /></button>
+          ) : (
+            <button type="submit" disabled={status === 'submitting' || !token} className="inline-flex flex-1 items-center justify-between rounded-full bg-white px-5 py-3.5 text-sm font-bold text-[#15162d] transition hover:bg-[#d6fa43] disabled:cursor-not-allowed disabled:opacity-60">{status === 'submitting' ? c.submitting : c.submit}{status === 'submitting' ? <Loader2 className="size-4 animate-spin" /> : <ArrowUpRight className="size-4" />}</button>
+          )}
         </div>
       </div>
     </form>
