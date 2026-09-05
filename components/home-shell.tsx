@@ -24,11 +24,13 @@ export function HomeShell({ initialLocale }: { initialLocale: Locale }) {
 
   // Keep the visible URL and the <html lang> attribute in sync whenever the
   // locale changes — from a manual switch, a saved preference, or browser
-  // detection on first load.
+  // detection on first load. Preserve search params and the current section
+  // anchor so changing language never kicks the visitor back to the page top.
   useEffect(() => {
     document.documentElement.lang = locale;
     if (window.location.pathname !== `/${locale}`) {
-      window.history.replaceState(null, '', `/${locale}`);
+      const { search, hash } = window.location;
+      window.history.replaceState(null, '', `/${locale}${search}${hash}`);
     }
   }, [locale]);
 
