@@ -75,7 +75,12 @@ jobs:
             https://www.prom4fans.com/ratgeber/creator-management-agentur \
             https://www.prom4fans.com/ratgeber/onlyfans-bio-schreiben \
             https://www.prom4fans.com/ratgeber/onlyfans-follower-gewinnen \
-            https://www.prom4fans.com/ratgeber/creator-agentur-vertrag-checkliste; do
+            https://www.prom4fans.com/ratgeber/creator-agentur-vertrag-checkliste \
+            https://www.prom4fans.com/ratgeber/onlyfans-guide \
+            https://www.prom4fans.com/ratgeber/onlyfans-marketing \
+            https://www.prom4fans.com/ratgeber/onlyfans-agentur-kosten \
+            https://www.prom4fans.com/ratgeber/fansly-vs-onlyfans \
+            https://www.prom4fans.com/ratgeber/fanvue-vs-onlyfans; do
             status="$(curl -L -sS -o /dev/null -w '%{http_code}' "$url")"
             echo "$url -> $status"
             test "$status" = "200"
