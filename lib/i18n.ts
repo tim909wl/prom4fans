@@ -3,7 +3,7 @@ export type Locale = (typeof locales)[number];
 
 const content = {
   de: {
-    nav: ['Leistung', 'So läuft’s', 'Über uns'],
+    nav: ['Leistung', 'So läuft’s', 'Über uns', 'Ratgeber'],
     navAriaLabel: 'Hauptnavigation',
     cta: 'Gespräch starten',
     heroEyebrow: 'Creator Management für Frauen 35+',
@@ -25,7 +25,7 @@ const content = {
       },
       {
         title: 'Growth & Distribution',
-        description: 'Der beste Content bringt nichts, wenn er niemanden erreicht. Wir sorgen dafür, dass er dort ankommt, wo deine Community wirklich ist – über Plattformgrenzen hinweg.',
+        description: 'Der beste Content bringt nichts, wenn ihn niemand erreicht. Wir sorgen dafür, dass er dort ankommt, wo deine Community wirklich ist – über Plattformgrenzen hinweg.',
         points: ['Cross-Promotion über Social-Kanäle', 'Setup auf OnlyFans, Fansly, Fanvue, MalouM', 'Laufende Optimierung nach Performance'],
       },
       {
