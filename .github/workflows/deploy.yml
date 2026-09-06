@@ -88,7 +88,11 @@ jobs:
             https://www.prom4fans.com/ratgeber/onlyfans-auf-reddit-bewerben \
             https://www.prom4fans.com/ratgeber/onlyfans-content-geleakt-dmca \
             https://www.prom4fans.com/ratgeber/onlyfans-tracking-links \
-            https://www.prom4fans.com/ratgeber/onlyfans-subscriber-halten; do
+            https://www.prom4fans.com/ratgeber/onlyfans-subscriber-halten \
+            https://www.prom4fans.com/ratgeber/onlyfans-verifizierung \
+            https://www.prom4fans.com/ratgeber/onlyfans-auszahlung-probleme \
+            https://www.prom4fans.com/ratgeber/onlyfans-erste-100-abonnenten \
+            https://www.prom4fans.com/ratgeber/onlyfans-wie-viel-content-vor-start; do
             status="$(curl -L -sS -o /dev/null -w '%{http_code}' "$url")"
             echo "$url -> $status"
             test "$status" = "200"
