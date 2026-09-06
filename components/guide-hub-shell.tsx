@@ -62,10 +62,12 @@ export function GuideHubShell() {
                           <span>{page.eyebrow}</span>
                           <span className="inline-flex items-center gap-1 normal-case tracking-normal"><Clock3 className="size-3.5" aria-hidden />{page.readingTime}</span>
                         </div>
-                        <h3 className="mt-4 text-2xl font-black leading-tight tracking-[-.025em] md:text-3xl">{page.title}</h3>
+                        <h3 className="mt-4 text-2xl font-black leading-tight tracking-[-.025em] md:text-3xl">
+                          <Link href={`/ratgeber/${page.slug}`} className="transition group-hover:text-[#6c35ed]">{page.title}</Link>
+                        </h3>
                         <p className="mt-4 flex-1 leading-relaxed text-[#5b6075]">{page.lead}</p>
                         <Link href={`/ratgeber/${page.slug}`} className="mt-7 inline-flex items-center gap-1.5 font-bold text-[#6c35ed]">
-                          Guide lesen <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                          {page.eyebrow} Guide lesen <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden />
                         </Link>
                       </article>
                     ))}
@@ -73,6 +75,20 @@ export function GuideHubShell() {
                 </section>
               );
             })}
+          </div>
+        </section>
+
+        <section className="border-t border-[#e8e5ef] bg-white py-20 md:py-24">
+          <div className="mx-auto grid w-[min(100%-2rem,78rem)] gap-10 md:grid-cols-[.8fr_1.2fr] md:gap-20">
+            <div>
+              <p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#6c35ed]">Redaktion & Methodik</p>
+              <h2 className="mt-4 text-4xl font-black tracking-[-.03em] md:text-5xl">Wie unsere Ratgeber entstehen.</h2>
+            </div>
+            <div className="space-y-5 text-lg leading-relaxed text-[#5b6075]">
+              <p>Die Beiträge werden von der Prom4Fans Redaktion für Creator geschrieben, die konkrete Entscheidungen treffen müssen. Jeder Guide konzentriert sich deshalb auf einen klaren Anwendungsfall und enthält bewusst umsetzbare Schritte statt bloßer Definitionen.</p>
+              <p>Wir trennen allgemeine, langfristig brauchbare Prinzipien von Details, die sich auf Plattformen verändern können. Bei sicherheits-, vertrags- oder plattformspezifischen Fragen weisen wir darauf hin, aktuelle offizielle Informationen zusätzlich zu prüfen. Inhalte werden überarbeitet, wenn sich unser praktischer Ansatz oder relevante Rahmenbedingungen wesentlich ändern.</p>
+              <p>Prom4Fans veröffentlicht keine Einkommensgarantien. Reichweite, Conversion und Umsatz hängen von vielen Faktoren ab und lassen sich nicht seriös versprechen.</p>
+            </div>
           </div>
         </section>
 
