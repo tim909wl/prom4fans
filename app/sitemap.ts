@@ -1,11 +1,12 @@
 import type { MetadataRoute } from 'next';
 import { serviceSlugs } from '@/lib/service-pages';
+import { guideList } from '@/lib/guide-pages';
 
 export const dynamic = 'force-static';
 
 const base = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.prom4fans.com').replace(/\/$/, '');
 const locales = ['de', 'en'] as const;
-const lastModified = new Date('2026-09-05T00:00:00.000Z');
+const siteModified = new Date('2026-09-06T00:00:00.000Z');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const homeLanguages = {
@@ -16,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const localePages: MetadataRoute.Sitemap = locales.map((locale) => ({
     url: `${base}/${locale}`,
-    lastModified,
+    lastModified: siteModified,
     changeFrequency: 'weekly',
     priority: 1,
     alternates: { languages: homeLanguages },
@@ -30,16 +31,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
     };
     return locales.map((locale) => ({
       url: `${base}/${locale}/${service}`,
-      lastModified,
+      lastModified: siteModified,
       changeFrequency: 'monthly' as const,
       priority: 0.85,
       alternates: { languages },
     }));
   });
 
+  const guides: MetadataRoute.Sitemap = guideList.map((guide) => ({
+    url: `${base}/ratgeber/${guide.slug}`,
+    lastModified: new Date(`${guide.updated}T00:00:00.000Z`),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
   return [
     ...localePages,
     ...servicePages,
-    { url: `${base}/kontakt`, lastModified, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${base}/ratgeber`, lastModified: siteModified, changeFrequency: 'weekly', priority: 0.9 },
+    ...guides,
+    { url: `${base}/kontakt`, lastModified: siteModified, changeFrequency: 'monthly', priority: 0.75 },
   ];
 }
