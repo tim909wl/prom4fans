@@ -1,0 +1,182 @@
+import type { ExtraGuidePage } from '@/lib/extra-guide-pages';
+
+export type SearchDemandGuidePage = ExtraGuidePage & {
+  sources?: Array<{ label: string; href: string; note?: string }>;
+};
+
+export const searchDemandGuides: Record<string, SearchDemandGuidePage> = {
+  'onlyfans-steuern-deutschland': {
+    slug: 'onlyfans-steuern-deutschland',
+    category: 'Analyse',
+    eyebrow: 'Steuern Deutschland',
+    title: 'OnlyFans Steuern in Deutschland: was du als Creator organisatorisch zuerst klären solltest',
+    metaTitle: 'OnlyFans Steuern Deutschland: Creator Guide 2026',
+    metaDescription: 'OnlyFans Steuern in Deutschland verständlich einordnen: steuerliche Erfassung, Unterlagen, Rücklagen, Umsatzsteuer-Fragen und wann Beratung sinnvoll ist.',
+    lead: 'Steuern gehören zu den häufigsten Fragen neuer Creator. Wichtig ist weniger, jede Vorschrift selbst zu beherrschen, sondern früh eine saubere Struktur für Anmeldung, Belege, Auszahlungen und Rücklagen aufzubauen.',
+    shortAnswer: 'Behandle Creator-Einnahmen von Anfang an als unternehmerische Einnahmen und dokumentiere sie sauber. Kläre die steuerliche Einordnung deiner Tätigkeit, übermittle bei Aufnahme einer selbständigen oder gewerblichen Tätigkeit den Fragebogen zur steuerlichen Erfassung über ELSTER und prüfe Umsatzsteuer, Kleinunternehmerregelung und Betriebsausgaben mit aktuellen offiziellen Informationen oder einer Steuerberatung. Dieser Guide ist allgemeine Information und keine Steuerberatung.',
+    readingTime: '11 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Starte mit Organisation statt mit Steuersätzen', paragraphs: ['Lege von der ersten Auszahlung an einen getrennten Bereich für Einnahmen, Plattformabrechnungen, Rechnungen und Betriebsausgaben an. So musst du später nicht Monate an Transaktionen rekonstruieren.', 'Eine einfache monatliche Routine reicht am Anfang: Auszahlungen sichern, Belege zuordnen, Geschäftsausgaben dokumentieren und einen Teil der Liquidität nicht ausgeben. Welche Steuerarten und Beträge konkret auf dich zutreffen, hängt von deiner persönlichen Situation ab.'], bullets: ['Plattformabrechnungen speichern', 'Bankbewegungen nachvollziehbar halten', 'Betriebsausgaben mit Beleg dokumentieren', 'Steuerrücklage getrennt vom Alltagskonto planen'] },
+      { title: 'Die steuerliche Erfassung gehört früh in den Prozess', paragraphs: ['ELSTER stellt für Einzelunternehmen den Fragebogen zur steuerlichen Erfassung bereit. Laut ELSTER ist er bei Aufnahme einer gewerblichen oder selbständigen Tätigkeit relevant und muss elektronisch an das zuständige Finanzamt übermittelt werden.', 'Warte nicht darauf, dass die ersten Monate perfekt laufen. Steuerliche Organisation ist leichter, wenn sie mit dem Business wächst, statt erst bei größeren Umsätzen nachgebaut zu werden.'] },
+      { title: 'Umsatzsteuer und Kleinunternehmerregelung nicht aus Blogposts erraten', paragraphs: ['Die umsatzsteuerliche Behandlung digitaler Plattformumsätze kann komplizierter sein als eine normale Rechnung an einen deutschen Kunden. Außerdem wurde die Kleinunternehmerregelung zum 1. Januar 2025 neu gefasst. Deshalb solltest du aktuelle Werte und Regeln direkt beim Bundesfinanzministerium beziehungsweise mit einer qualifizierten Beratung prüfen.', 'Nutze allgemeine Creator-Guides als Orientierung für die Fragen, die du stellen musst – nicht als Ersatz für eine individuelle Einordnung.'] },
+      { title: 'Betriebsausgaben brauchen einen geschäftlichen Zusammenhang', paragraphs: ['Technik, Software, Produktionsmittel, Beratung oder andere Kosten können steuerlich relevant sein, wenn sie betrieblich veranlasst sind. Ob und in welchem Umfang etwas abzugsfähig ist, hängt aber vom Einzelfall ab.', 'Dokumentiere deshalb nicht nur den Betrag, sondern auch den Zweck. Das hilft bei der Buchhaltung und späteren Rückfragen deutlich mehr als ein ungeordnetes Fotoarchiv voller Kassenbons.'] },
+      { title: 'Wann eine Steuerberatung besonders sinnvoll wird', paragraphs: ['Spätestens bei steigenden Einnahmen, mehreren Plattformen, Agenturverträgen, ausländischen Sachverhalten oder Unsicherheit über Umsatzsteuer lohnt sich professionelle Hilfe. Gute Beratung kostet Geld, kann aber Fehlentscheidungen vermeiden, die später deutlich teurer werden.', 'Bereite die Beratung vor: Jahresumsätze, Auszahlungsreports, bestehende Gewerbeanmeldung, bisherige Steuererklärungen und deine wichtigsten offenen Fragen. Je strukturierter die Unterlagen, desto effizienter wird das Gespräch.'], callout: 'Steuerwissen ist wichtig – noch wichtiger ist ein Prozess, der verhindert, dass Belege, Auszahlungen und Fristen im Alltag verschwinden.' },
+    ],
+    checklistTitle: 'Steuer-Setup für Creator',
+    checklist: ['Einnahmen und Auszahlungen zentral dokumentiert', 'Belege für geschäftliche Ausgaben gesammelt', 'Steuerliche Einordnung geklärt', 'Fragebogen zur steuerlichen Erfassung geprüft', 'Umsatzsteuer-Thema aktuell geprüft', 'Steuerrücklage eingeplant', 'Monatlichen Buchhaltungsrhythmus eingerichtet', 'Bei Unsicherheit qualifizierte Beratung eingeplant'],
+    related: ['onlyfans-gewerbe-anmelden', 'creator-kennzahlen', 'onlyfans-agentur-kosten', 'creator-agentur-vertrag-checkliste'],
+    serviceLinks: [{ href: '/de/creator-management', label: 'Creator Management', text: 'Wir strukturieren operative Prozesse und Reporting. Steuerliche Einzelfallberatung gehört in die Hände einer Steuerberatung.' }],
+    sources: [
+      { label: 'ELSTER: Fragebogen zur steuerlichen Erfassung für Einzelunternehmen', href: 'https://www.elster.de/eportal/formulare-leistungen/alleformulare/fseeun', note: 'Offizielle ELSTER-Seite' },
+      { label: 'ELSTER: Unternehmen gegründet oder selbständig gemacht?', href: 'https://www.elster.de/elsterweb/infoseite/unternehmensgruendung', note: 'Hinweise zur steuerlichen Erfassung' },
+      { label: 'Bundesfinanzministerium: Umsatzsteuer-Anwendungserlass', href: 'https://www.bundesfinanzministerium.de/Web/DE/Themen/Steuern/Steuerarten/Umsatzsteuer/Umsatzsteuer_Anwendungserlass/umsatzsteuer_anwendungserlass.html', note: 'Aktuelle umsatzsteuerliche Verwaltungsinformationen' },
+    ],
+  },
+
+  'onlyfans-gewerbe-anmelden': {
+    slug: 'onlyfans-gewerbe-anmelden', category: 'Einstieg', eyebrow: 'Gewerbe anmelden',
+    title: 'OnlyFans Gewerbe anmelden: welche Schritte Creator in Deutschland vor dem Start prüfen sollten',
+    metaTitle: 'OnlyFans Gewerbe anmelden: Deutschland Guide 2026',
+    metaDescription: 'OnlyFans Gewerbe anmelden: Tätigkeit einordnen, Gewerbeamt, ELSTER, Tätigkeitsbeschreibung, Unterlagen und nächste Schritte für Creator in Deutschland.',
+    lead: 'Wer Creator-Einnahmen dauerhaft und mit Gewinnerzielungsabsicht erzielt, sollte die unternehmerische Einordnung nicht auf später verschieben. Entscheidend ist, die eigene Tätigkeit korrekt einzuordnen und die passenden Behördenwege früh zu erledigen.',
+    shortAnswer: 'Prüfe zuerst, ob deine konkrete Tätigkeit gewerblich oder freiberuflich einzuordnen ist. Gewerbliche Tätigkeiten werden bei der zuständigen Gemeinde beziehungsweise Stadt angezeigt; das Existenzgründungsportal des Bundes verweist dafür auf § 14 GewO. Für die steuerliche Erfassung folgt anschließend der elektronische Fragebogen über ELSTER. Im Zweifel sollte die Einordnung mit Gewerbeamt, Finanzamt oder qualifizierter Beratung geklärt werden.',
+    readingTime: '9 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Gewerbe und Selbständigkeit sind nicht dasselbe Wort', paragraphs: ['Nicht jede selbständige Tätigkeit wird automatisch gleich behandelt. Das Existenzgründungsportal unterscheidet zwischen Gewerbetreibenden und Freiberuflern. Welche Einordnung für einen konkreten Creator zutrifft, hängt von der tatsächlichen Tätigkeit ab.', 'Deshalb solltest du nicht einfach eine Tätigkeitsbeschreibung aus einem Forum kopieren. Beschreibe sachlich, womit du Geld verdienst: Erstellung und Vermarktung digitaler Inhalte, Social-Media-Leistungen und gegebenenfalls weitere klar benannte Tätigkeiten.'] },
+      { title: 'Wo die Gewerbeanmeldung erfolgt', paragraphs: ['Gewerbliche Gründer melden ihr Vorhaben beim Gewerbeamt ihrer Stadt oder Gemeinde an. Viele Behörden bieten inzwischen Online-Verfahren an. Gebühren und konkrete Unterlagen unterscheiden sich regional.', 'Das Existenzgründungsportal nennt als grundlegende Unterlagen insbesondere einen gültigen Personalausweis oder Reisepass; je nach Tätigkeit können weitere Nachweise erforderlich sein.'] },
+      { title: 'Die Tätigkeitsbeschreibung sollte präzise, aber nicht unnötig intim sein', paragraphs: ['Die Behörde muss verstehen können, welche wirtschaftliche Tätigkeit du ausübst. Dafür ist eine neutrale, sachliche Beschreibung meist hilfreicher als Plattform-Slang.', 'Wenn du neben OnlyFans auch Social Media, digitale Produkte oder andere Leistungen anbietest, sollte die Beschreibung deinen tatsächlichen Umfang abbilden. Frage bei Unsicherheit direkt beim Gewerbeamt nach, welche Formulierung für deinen Fall passt.'] },
+      { title: 'Nach der Anmeldung kommt die steuerliche Erfassung', paragraphs: ['ELSTER weist darauf hin, dass nach Gründung beziehungsweise Aufnahme einer selbständigen Tätigkeit die Steuernummer über den elektronischen Fragebogen zur steuerlichen Erfassung beantragt wird.', 'Plane diesen Schritt direkt mit ein. Ein Gewerbeschein ersetzt nicht die steuerliche Organisation und umgekehrt.'] },
+      { title: 'Baue die Administration gleich mit auf', paragraphs: ['Richte getrennte Ablagen für Verträge, Auszahlungen, Belege, Steuerunterlagen und Plattformdokumente ein. Das kostet zu Beginn vielleicht eine Stunde und spart später sehr viel Sucharbeit.', 'Wenn du anonym nach außen auftreten möchtest, trenne außerdem öffentliche Creator-Identität und behördliche beziehungsweise geschäftliche Stammdaten sauber voneinander.'], callout: 'Die genaue rechtliche und steuerliche Einordnung hängt vom Einzelfall ab. Dieser Beitrag ist eine Organisationshilfe und keine Rechts- oder Steuerberatung.' },
+    ],
+    checklistTitle: 'Anmeldung vorbereiten', checklist: ['Tätigkeit sachlich beschrieben', 'Einordnung gewerblich/freiberuflich geprüft', 'Zuständiges Gewerbeamt gefunden', 'Benötigte Unterlagen geprüft', 'Gewerbeanmeldung bei Bedarf erledigt', 'ELSTER-Zugang vorbereitet', 'Steuerliche Erfassung eingeplant', 'Digitale Ablage für Unternehmensunterlagen eingerichtet'],
+    related: ['onlyfans-steuern-deutschland', 'onlyfans-starten', 'onlyfans-anonym-starten', 'creator-account-sicherheit'],
+    serviceLinks: [{ href: '/de/creator-management', label: 'Creator Management', text: 'Für Strategie und operative Struktur können wir unterstützen; Behörden- und Steuerfragen sollten mit den zuständigen Stellen beziehungsweise Fachleuten geklärt werden.' }],
+    sources: [
+      { label: 'Existenzgründungsportal: Unternehmensanmeldung', href: 'https://www.existenzgruendungsportal.de/Navigation/DE/So-gehts/Unternehmensanmeldung/unternehmensanmeldung', note: 'Offizielles Existenzgründungsportal des Bundes' },
+      { label: 'Existenzgründungsportal: Gewerbeamt', href: 'https://www.existenzgruendungsportal.de/SharedDocs/Expertenforum_Unterseiten/Gewerbeamt/Gewerbeamt', note: 'Unterlagen und Zuständigkeit' },
+      { label: 'ELSTER: steuerliche Erfassung', href: 'https://www.elster.de/elsterweb/infoseite/unternehmensgruendung', note: 'Offizielle ELSTER-Hinweise' },
+    ],
+  },
+
+  'onlyfans-free-oder-paid': {
+    slug: 'onlyfans-free-oder-paid', category: 'Analyse', eyebrow: 'Free vs Paid',
+    title: 'OnlyFans Free oder Paid Page? So entscheidest du nach Funnel, Zeitaufwand und Kaufverhalten',
+    metaTitle: 'OnlyFans Free oder Paid Page? Entscheidungshilfe',
+    metaDescription: 'OnlyFans Free vs Paid Page vergleichen: Funnel, PPV, Zeitaufwand, Conversion, Zielgruppe und Messplan für eine belastbare Entscheidung.',
+    lead: 'Die Frage „kostenlose oder bezahlte Seite?“ taucht in Creator-Communities ständig auf – und hat keine pauschale Antwort. Das richtige Modell hängt davon ab, wo dein Traffic herkommt und wie du monetarisieren möchtest.',
+    shortAnswer: 'Eine Paid Page monetarisiert den Einstieg direkt und filtert stärker, während eine Free Page mehr Menschen ohne Einstiegshürde aufnehmen kann, aber häufig mehr Verkaufs- und Kommunikationsarbeit benötigt. Entscheide nicht nach Meinungen, sondern nach deinem Funnel: Traffic-Quelle, Zeitbudget, PPV-Strategie, Conversion und Umsatz pro Fan.',
+    readingTime: '9 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Paid Page: weniger Menschen, aber früheres Kaufsignal', paragraphs: ['Bei einer bezahlten Seite trifft die Person bereits beim Einstieg eine Kaufentscheidung. Das kann die Community kleiner machen, aber stärker qualifizieren.', 'Dafür muss dein öffentliches Marketing klar genug erklären, warum das Abo relevant ist. Wenn die Erwartung vor dem Kauf unklar bleibt, hilft auch ein niedriger Preis nicht automatisch.'] },
+      { title: 'Free Page: niedrige Hürde, höherer Verkaufsaufwand', paragraphs: ['Eine kostenlose Seite kann als zusätzliche Funnel-Stufe funktionieren. Sie erzeugt jedoch nicht automatisch Käufer. Viele Creator berichten, dass ein großer Teil kostenloser Follower wenig Kaufabsicht zeigt und mehr Chat- beziehungsweise Verkaufsarbeit entstehen kann.', 'Sie kann sinnvoll sein, wenn du genug Reichweite, einen klaren PPV-Prozess und die operative Kapazität für diese zusätzliche Stufe hast.'] },
+      { title: 'Vergleiche die Modelle mit denselben Kennzahlen', paragraphs: ['Miss nicht nur Fan-Anzahl. Für einen fairen Vergleich brauchst du unter anderem neue Fans, Käuferquote, durchschnittlichen Umsatz pro Fan, Zeitaufwand und Retention.', 'Wenn eine Free Page zehnmal mehr Fans bringt, aber kaum Umsatz und viel Arbeit erzeugt, ist sie nicht automatisch besser. Umgekehrt kann sie bei einem starken PPV-Modell sehr gut funktionieren.'], bullets: ['Neue Fans pro Woche', 'Anteil zahlender Käufer', 'Umsatz pro Fan', 'Zeitaufwand für Kommunikation', 'Conversion aus deinen Promo-Kanälen', 'Retention beziehungsweise Wiederkäufe'] },
+      { title: 'Ein Hybridmodell braucht klare Rollen', paragraphs: ['Wer Free und Paid parallel betreibt, sollte den Unterschied sichtbar machen. Die kostenlose Seite braucht einen klaren Zweck, zum Beispiel Discovery und einzelne PPV-Angebote; die Paid Page braucht einen erkennbaren Mehrwert.', 'Wenn beide Seiten gleich wirken, erzeugst du eher Verwirrung und doppelten Pflegeaufwand.'] },
+      { title: 'Teste mit einem festen Zeitraum', paragraphs: ['Ändere nicht jeden zweiten Tag Preis, Seitentyp und Content. Lege einen Zeitraum fest, dokumentiere deine Ausgangsdaten und ändere möglichst nur ein großes Element gleichzeitig.', 'So entwickelst du eine Entscheidung auf Basis deines eigenen Publikums statt auf Basis fremder Screenshots.'], callout: 'Die beste Seitenart ist die, die mit deinem Traffic, deinem Zeitbudget und deinem Verkaufsmodell zusammenpasst.' },
+    ],
+    checklistTitle: 'Free-vs-Paid-Entscheidung', checklist: ['Traffic-Quelle bekannt', 'Zeitbudget für Kommunikation realistisch eingeschätzt', 'PPV-Strategie beschrieben', 'Mehrwert einer Paid Page klar', 'Kennzahlen für beide Modelle festgelegt', 'Testzeitraum definiert', 'Nur eine große Variable gleichzeitig geändert'],
+    related: ['onlyfans-preise-festlegen', 'onlyfans-ppv-strategie', 'onlyfans-follower-gewinnen', 'creator-kennzahlen'],
+    serviceLinks: [{ href: '/de/onlyfans-management', label: 'OnlyFans Management', text: 'Wir betrachten Free/Paid nicht isoliert, sondern im Zusammenhang mit Funnel, Content und Verkaufsprozess.' }],
+  },
+
+  'onlyfans-ppv-strategie': {
+    slug: 'onlyfans-ppv-strategie', category: 'Analyse', eyebrow: 'PPV Strategie',
+    title: 'OnlyFans PPV Strategie: Angebote, Preislogik und Timing ohne dauerndes Spam-Gefühl',
+    metaTitle: 'OnlyFans PPV Strategie: Preis, Timing & Verkauf',
+    metaDescription: 'OnlyFans PPV sinnvoll planen: Angebotsstruktur, Preislogik, Segmentierung, Timing, Tracking und Retention statt wahlloser Mass Messages.',
+    lead: 'PPV funktioniert nicht besser, nur weil du häufiger sendest. Entscheidend ist, ob Angebot, Zielgruppe, Erwartung und Timing zusammenpassen – und ob du aus Verkäufen tatsächlich lernst.',
+    shortAnswer: 'Baue wenige verständliche PPV-Kategorien auf, ordne ihnen einen nachvollziehbaren Preisrahmen zu und segmentiere nach Interesse, statt jede Nachricht an alle zu schicken. Dokumentiere Öffnung, Käufe, Wiederkäufe und Beschwerden beziehungsweise negative Signale. Ziel ist ein vorhersehbares Angebotssystem, nicht maximale Nachrichtenmenge.',
+    readingTime: '10 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Definiere zuerst, was im Abo und was als PPV verkauft wird', paragraphs: ['Wenn Fans nicht verstehen, was die Subscription enthält, wirken zusätzliche Angebote schnell beliebig. Formuliere deshalb einen stabilen Basisumfang und trenne besondere Inhalte oder Formate nachvollziehbar davon.', 'Diese Grenze sollte zu deiner Positionierung passen und möglichst konstant bleiben. Häufig wechselnde Regeln erschweren Vertrauen und machen Preise schwer vergleichbar.'] },
+      { title: 'Baue Preisstufen nach Wert statt nach Bauchgefühl', paragraphs: ['Unterschiedliche Formate können unterschiedliche Produktionszeit, Exklusivität und Nachfrage haben. Lege deshalb Kategorien fest und gib ihnen intern einen Preisrahmen.', 'Der Zweck ist nicht, jede Bestellung gleich zu machen, sondern spontane Preisentscheidungen zu reduzieren und Tests sauberer auszuwerten.'] },
+      { title: 'Segmentierung schlägt Dauerbeschallung', paragraphs: ['Nicht jeder Subscriber interessiert sich für jedes Angebot. Wenn du erkennst, welche Formate einzelne Fans bereits gekauft oder positiv bewertet haben, kannst du Angebote relevanter machen.', 'Relevanz reduziert die Gefahr, dass Nachrichten nur als Spam wahrgenommen werden. Gleichzeitig wird dein Reporting aussagekräftiger, weil du nicht völlig unterschiedliche Zielgruppen in einer Kennzahl vermischst.'] },
+      { title: 'Miss mehr als den Umsatz einer einzelnen Nachricht', paragraphs: ['Beobachte zusätzlich Käuferquote, Umsatz pro Empfänger, Wiederkäufe und negative Signale. Ein aggressiver Versand kann kurzfristig Umsatz erzeugen und langfristig trotzdem Retention schädigen.', 'Vergleiche deshalb Kampagnen über einen längeren Zeitraum und dokumentiere Thema, Preis, Zielgruppe und Versandzeit.'], bullets: ['Empfängerzahl', 'Käuferquote', 'Umsatz pro Empfänger', 'Wiederkäufer', 'Unsubscribes oder negative Reaktionen', 'Format und Preis'] },
+      { title: 'Ein PPV-Kalender verhindert Zufallsverkauf', paragraphs: ['Plane Angebote zusammen mit deinem Content-Kalender. Dann kannst du Teaser, Hauptangebot und Nachbereitung als zusammenhängende Kampagne denken.', 'So entsteht ein Rhythmus, bei dem Fans wissen, was sie ungefähr erwarten können, während du Produktion und Verkauf besser vorbereitest.'], callout: 'PPV ist ein Produkt- und CRM-Thema – nicht nur ein „Nachricht senden“-Button.' },
+    ],
+    checklistTitle: 'PPV-System aufsetzen', checklist: ['Basisumfang des Abos festgelegt', 'PPV-Kategorien definiert', 'Preisrahmen dokumentiert', 'Zielgruppen beziehungsweise Segmente beschrieben', 'Versandrhythmus festgelegt', 'Kampagnen einzeln getrackt', 'Wiederkäufe gemessen', 'Retention mitbeobachtet'],
+    related: ['onlyfans-preise-festlegen', 'onlyfans-free-oder-paid', 'creator-kennzahlen', 'onlyfans-subscriber-halten'],
+    serviceLinks: [{ href: '/de/onlyfans-management', label: 'OnlyFans Management', text: 'Wir verbinden Angebotslogik, Content-Kalender, Segmentierung und Reporting zu einem planbaren System.' }],
+  },
+
+  'onlyfans-auf-reddit-bewerben': {
+    slug: 'onlyfans-auf-reddit-bewerben', category: 'Wachstum', eyebrow: 'Reddit Promotion',
+    title: 'OnlyFans auf Reddit bewerben: Nischen, Regeln und Tracking statt wahlloses Crossposting',
+    metaTitle: 'OnlyFans auf Reddit bewerben: Strategie für Creator',
+    metaDescription: 'OnlyFans auf Reddit bewerben: passende Subreddits finden, Regeln beachten, Content organisieren, Tracking nutzen und Conversion statt Upvotes messen.',
+    lead: 'Reddit ist für viele Creator ein wichtiger Discovery-Kanal, aber die Plattform funktioniert nicht wie ein klassischer Feed. Communities haben eigene Regeln, Erwartungen und Moderation – und genau das muss Teil deiner Strategie sein.',
+    shortAnswer: 'Suche Subreddits, die wirklich zu deiner Nische passen, lies vor dem Posten jede Community-Regel und baue ein organisiertes Set aus unterschiedlichen Promo-Medien und Captions auf. Tracke nicht nur Upvotes, sondern Profilbesuche und tatsächliche Conversions. Weniger passende Communities können wertvoller sein als massenhaft irrelevante Posts.',
+    readingTime: '10 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Nische vor Reichweite', paragraphs: ['Große Subreddits sind nicht automatisch die besten. Ein kleineres Community-Thema mit hoher Passung kann deutlich qualifizierteren Traffic bringen.', 'Suche nach Interessen, Stil, Ästhetik und Persönlichkeit, die zu deiner Positionierung passen. Prüfe anschließend Regeln, Verifikationsanforderungen und typische Top-Posts.'] },
+      { title: 'Jede Community ist ein eigener Kontext', paragraphs: ['Was in einem Subreddit funktioniert, kann in einem anderen als Spam gelten. Passe Titel, Format und Auswahl des Contents an den jeweiligen Kontext an.', 'Verwende nicht immer dasselbe Bild und denselben Text in kurzer Zeit überall. Das wirkt austauschbar und macht es außerdem schwer zu lernen, welche Kombination tatsächlich funktioniert.'] },
+      { title: 'Organisiere Promo-Material wie eine kleine Bibliothek', paragraphs: ['Creator berichten häufig, dass strukturierte Ordner und vorbereitete Caption-Varianten den täglichen Aufwand stark reduzieren. Du kannst Medien nach Thema, Outfit, Format oder Zielgruppe taggen.', 'So vermeidest du Wiederholungen und kannst gezielt das Material auswählen, das zu einer bestimmten Community passt.'] },
+      { title: 'Upvotes sind nicht die Zielkennzahl', paragraphs: ['Ein Post kann viral sein und trotzdem kaum zahlende Fans bringen. Nutze deshalb Tracking-Links oder zumindest eine dokumentierte Zuordnung deiner Traffic-Quellen.', 'Bewerte Communities nach Profilbesuchen, Klicks und Conversions. Das schützt dich davor, viel Zeit in Reichweite zu investieren, die wirtschaftlich nichts bringt.'] },
+      { title: 'Account-Sicherheit und Regelkonformität haben Vorrang', paragraphs: ['Reddit-Communities und die Plattform selbst können Inhalte entfernen oder Accounts einschränken, wenn Regeln verletzt werden. Lies deshalb die aktuellen Plattform- und Subreddit-Regeln und vermeide Automatisierung, die wie Spam wirkt.', 'Wenn du mehrere Promo-Kanäle nutzt, priorisiere lieber wenige, die du sauber pflegen kannst. Genau dieser Fokus wird auch in aktuellen Creator-Diskussionen immer wieder empfohlen.'], callout: 'Reddit ist kein Verteiler für denselben Werbepost – es ist eine Sammlung eigenständiger Communities.' },
+    ],
+    checklistTitle: 'Reddit-Promo vorbereiten', checklist: ['Nischenliste erstellt', 'Regeln jedes Subreddits geprüft', 'Verifikationsanforderungen notiert', 'Promo-Material organisiert', 'Mehrere Caption-Varianten vorbereitet', 'Tracking eingerichtet', 'Communities nach Conversion bewertet', 'Spam-artiges Crossposting vermieden'],
+    related: ['onlyfans-marketing', 'onlyfans-follower-gewinnen', 'social-media-funnel', 'creator-nische-finden', 'hooks-fuer-creator'],
+    serviceLinks: [{ href: '/de/onlyfans-management', label: 'Distribution & Funnel', text: 'Wir behandeln Reddit als einen möglichen Discovery-Kanal innerhalb eines größeren Marketing-Systems.' }],
+  },
+
+  'onlyfans-content-geleakt-dmca': {
+    slug: 'onlyfans-content-geleakt-dmca', category: 'Sicherheit', eyebrow: 'Leaks & DMCA',
+    title: 'OnlyFans Content geleakt: wie du Funde dokumentierst, Takedowns strukturierst und nicht in Panik arbeitest',
+    metaTitle: 'OnlyFans Content geleakt: DMCA & Takedown Ablauf',
+    metaDescription: 'OnlyFans Leak entdeckt? Funde sichern, URLs dokumentieren, Rechte prüfen, Takedown-Prozess strukturieren und wiederkehrende Monitoring-Routine aufbauen.',
+    lead: 'Leaks sind für Creator emotional belastend und organisatorisch chaotisch. Ein klarer Ablauf hilft dir, Beweise zu sichern, Prioritäten zu setzen und Takedowns nachvollziehbar zu bearbeiten.',
+    shortAnswer: 'Dokumentiere zuerst URL, Datum, Screenshot und betroffenen Inhalt. Prüfe dann, wer die Seite hostet beziehungsweise welche Plattform den Inhalt veröffentlicht und nutze deren Rechte- oder DMCA-Verfahren. Bei vielen Funden kann ein spezialisierter Takedown-Dienst sinnvoll sein. Bei Drohungen, Stalking oder Doxxing solltest du zusätzlich rechtliche beziehungsweise sicherheitsbezogene Hilfe einholen.',
+    readingTime: '9 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Erst dokumentieren, dann entfernen lassen', paragraphs: ['Bevor eine Seite verschwindet, sichere die wichtigsten Informationen: vollständige URL, Datum, Screenshot, Nutzername und welcher konkrete Inhalt betroffen ist. Diese Dokumentation hilft, wenn du später nachweisen musst, was veröffentlicht wurde.', 'Lege dafür einen festen Ordner oder eine Tabelle an. Bei mehreren Leaks verliert man sonst schnell den Überblick darüber, welche Meldung bereits verschickt wurde.'] },
+      { title: 'Priorisiere nach Sichtbarkeit und Schaden', paragraphs: ['Nicht jeder Fund ist gleich dringend. Öffentlich über Suchmaschinen auffindbare Seiten, große Plattformen oder Inhalte mit persönlichen Informationen verdienen höhere Priorität als schwer erreichbare Kopien ohne Reichweite.', 'Mit einer Priorisierung kannst du deine Zeit sinnvoller einsetzen und erkennst, welche Quellen immer wieder auftauchen.'] },
+      { title: 'Nutze die Rechte- und Takedown-Wege der jeweiligen Plattform', paragraphs: ['Viele Plattformen und Hosts bieten Prozesse für Urheberrechtsbeschwerden. Welche Angaben benötigt werden, unterscheidet sich. Halte Rechteinhaberschaft, Originaldateien und Veröffentlichungszeitpunkte nachvollziehbar bereit.', 'Wenn ein Dienst auf Beschwerden nicht reagiert oder die Situation komplex wird, kann juristische Unterstützung sinnvoll sein. Dieser Guide ersetzt keine Rechtsberatung.'] },
+      { title: 'Monitoring verhindert nicht den Leak, verkürzt aber die Reaktionszeit', paragraphs: ['Creator-Communities berichten regelmäßig über Leak-Detection- und Takedown-Dienste. Solche Services können das Web automatisiert nach Treffern durchsuchen und Meldungen bündeln.', 'Bewerte einen Anbieter nach Transparenz, Abdeckung, Löschquote, Datenschutz und Vertragsbedingungen – nicht nur nach Marketingversprechen.'] },
+      { title: 'Doxxing und Bedrohungen sind eine andere Risikoklasse', paragraphs: ['Wenn neben Content auch echte Adresse, Telefonnummer, Arbeitsplatz oder andere private Daten verbreitet werden, solltest du die Situation nicht wie einen normalen Copyright-Fall behandeln.', 'Dokumentiere Bedrohungen, sichere Accounts, ändere gefährdete Zugangsdaten und hole dir gegebenenfalls rechtliche oder polizeiliche Unterstützung.'], callout: 'Ein strukturierter Incident-Prozess reduziert Chaos: finden → sichern → priorisieren → melden → nachprüfen → dokumentieren.' },
+    ],
+    checklistTitle: 'Leak-Incident-Check', checklist: ['URL und Screenshot gesichert', 'Betroffenen Inhalt eindeutig identifiziert', 'Priorität festgelegt', 'Takedown-Kanal der Plattform gefunden', 'Meldung dokumentiert', 'Nachkontrolle terminiert', 'Wiederkehrende Quelle markiert', 'Bei Doxxing zusätzliche Hilfe eingeschaltet'],
+    related: ['creator-account-sicherheit', 'onlyfans-anonym-starten', 'creator-management-agentur', 'creator-agentur-vertrag-checkliste'],
+    serviceLinks: [{ href: '/de/creator-management', label: 'Creator Management mit Sicherheitsprozessen', text: 'Operative Sicherheit, Zugänge und Incident-Prozesse sollten Teil eines professionellen Creator-Setups sein.' }],
+  },
+
+  'onlyfans-tracking-links': {
+    slug: 'onlyfans-tracking-links', category: 'Analyse', eyebrow: 'Tracking Links',
+    title: 'OnlyFans Tracking Links richtig nutzen: herausfinden, welcher Kanal wirklich Subscriber bringt',
+    metaTitle: 'OnlyFans Tracking Links: Promo-Kanäle richtig messen',
+    metaDescription: 'OnlyFans Tracking Links sinnvoll einsetzen: Kanalstruktur, Benennung, Kampagnenlogik, Conversion-Auswertung und ein einfaches Creator-Dashboard.',
+    lead: 'Ohne sauberes Tracking wirkt Marketing wie Bauchgefühl. Tracking Links helfen dir, Promo-Kanäle und Kampagnen auseinanderzuhalten – vorausgesetzt, du benennst und dokumentierst sie konsistent.',
+    shortAnswer: 'Erstelle Tracking Links nach einer festen Namenslogik für Plattform, Account und Kampagne. Ändere nicht ständig die Struktur und führe außerhalb der Plattform ein kleines Logbuch mit Zeitraum, Content und Link. Bewerte Quellen über Profilbesuche beziehungsweise Klicks, Conversions und Umsatz – nicht nur über Reichweite.',
+    readingTime: '8 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Ein Link pro klarer Quelle', paragraphs: ['Wenn Instagram, Reddit und X denselben Link verwenden, kannst du später nicht erkennen, welcher Kanal funktioniert. Erstelle deshalb mindestens pro Hauptplattform einen eigenen Tracking Link.', 'Bei größeren Setups kannst du zusätzlich nach Account, Kampagne oder Content-Serie unterscheiden. Zu viele Links werden aber schnell unübersichtlich – starte einfach.'] },
+      { title: 'Nutze eine feste Namenskonvention', paragraphs: ['Benennungen wie „reddit-main-sep26“ oder „instagram-reels-sep26“ sind später verständlicher als „link2neu“. Entscheidend ist, dass du die Logik dauerhaft beibehältst.', 'Dokumentiere zusätzlich Startdatum und Zweck. So kannst du auch dann noch vergleichen, wenn Plattformansichten sich verändern oder alte Reports schwer lesbar werden.'] },
+      { title: 'Verknüpfe Tracking mit deinem Content-Kalender', paragraphs: ['Wenn du weißt, welcher Content zu welcher Kampagne gehört, kannst du nicht nur Plattformen, sondern auch Formate bewerten. Vielleicht bringt ein Kanal wenig Klicks, aber besonders kaufbereite Besucher.', 'Diese Kombination aus Content-Log und Traffic-Link ist viel aussagekräftiger als isolierte Followerzahlen.'] },
+      { title: 'Bewerte die ganze Kette', paragraphs: ['Ein Link mit vielen Klicks ist nicht automatisch gut. Prüfe, was danach passiert: Kommen Profilbesuche, Subscriptions, Käufe und Verlängerungen?', 'Daraus entsteht ein einfaches Funnel-Dashboard, das dir zeigt, wo du optimieren solltest.'], bullets: ['Impressions beziehungsweise Reichweite', 'Klicks oder Profilbesuche', 'Subscriptions', 'Umsatz beziehungsweise Käufe', 'Retention oder Wiederkäufe'] },
+      { title: 'Behalte ein eigenes Archiv', paragraphs: ['Creator berichten gelegentlich über unübersichtliche oder veränderte Tracking-Ansichten. Deshalb ist ein eigenes monatliches Export- oder Screenshot-Archiv sinnvoll.', 'Du brauchst dafür kein komplexes BI-System. Eine saubere Tabelle mit Quelle, Zeitraum, Klicks, Conversions und Umsatz reicht am Anfang völlig.'], callout: 'Tracking ist nur dann wertvoll, wenn daraus eine Entscheidung folgt: ausbauen, testen, verändern oder stoppen.' },
+    ],
+    checklistTitle: 'Tracking-Setup', checklist: ['Hauptkanäle einzeln verlinkt', 'Namenskonvention definiert', 'Startdatum dokumentiert', 'Content-Kampagne zugeordnet', 'Conversions mitgemessen', 'Umsatz beziehungsweise Käufe ergänzt', 'Monatlichen Export oder Screenshot geplant', 'Review-Termin festgelegt'],
+    related: ['creator-kennzahlen', 'onlyfans-marketing', 'social-media-funnel', 'onlyfans-auf-reddit-bewerben'],
+    serviceLinks: [{ href: '/de/creator-management', label: 'Reporting & Analyse', text: 'Wir bauen Tracking so auf, dass aus Zahlen konkrete Entscheidungen für Content und Distribution entstehen.' }],
+  },
+
+  'onlyfans-subscriber-halten': {
+    slug: 'onlyfans-subscriber-halten', category: 'Wachstum', eyebrow: 'Subscriber Retention',
+    title: 'OnlyFans Subscriber halten: warum Retention schon vor dem ersten Abo beginnt',
+    metaTitle: 'OnlyFans Subscriber halten: Retention für Creator',
+    metaDescription: 'OnlyFans Subscriber halten: Erwartungsmanagement, Content-Rhythmus, Community, PPV, Renewal-Signale und Retention systematisch verbessern.',
+    lead: 'Neue Subscriber zu gewinnen ist nur die halbe Arbeit. Wenn Erwartung, Content und Kommunikation nach dem Kauf nicht zusammenpassen, verlierst du Fans genauso schnell wieder.',
+    shortAnswer: 'Retention beginnt mit dem Versprechen vor dem Kauf. Zeige klar, was das Abo enthält, halte einen verlässlichen Content-Rhythmus und überfrachte die Community nicht mit widersprüchlichen Angeboten. Miss Verlängerungen nach Kohorte beziehungsweise Zeitraum und sammle Gründe für Abwanderung, statt nur neue Subs zu zählen.',
+    readingTime: '9 Min.', published: '2026-09-06', updated: '2026-09-06',
+    sections: [
+      { title: 'Das Marketing setzt die Erwartung', paragraphs: ['Wenn Promo etwas völlig anderes verspricht als die Paid Page liefert, entsteht Enttäuschung unabhängig von der objektiven Content-Qualität. Deshalb muss der Funnel konsistent sein.', 'Bio, Teaser, Preis und sichtbarer Content sollten ein realistisches Bild davon geben, was nach dem Abo folgt.'] },
+      { title: 'Verlässlichkeit schlägt hektische Überproduktion', paragraphs: ['Ein nachvollziehbarer Veröffentlichungsrhythmus ist für viele Fans wertvoller als eine kurze Phase extremer Aktivität, auf die anschließend Stille folgt.', 'Plane so, dass du den Rhythmus auch in stressigen Wochen halten kannst. Content-Batching und ein kleiner Puffer helfen dabei.'] },
+      { title: 'Community-Nähe braucht Grenzen', paragraphs: ['Antworten, wiederkehrende Formate und das Aufgreifen von Community-Fragen können Bindung stärken. Gleichzeitig musst du nicht jederzeit verfügbar sein.', 'Klare Kommunikationszeiten und Erwartungen verhindern, dass du dich überlastest und plötzlich komplett ausfällst.'] },
+      { title: 'PPV darf den Wert des Abos nicht unklar machen', paragraphs: ['Wenn Paid Subscriber das Gefühl bekommen, nach dem Abo ständig erneut zahlen zu müssen, kann das die Wahrnehmung des Grundangebots verändern. Definiere deshalb klar, welche Inhalte zum Abo gehören und welche besonderen Formate zusätzlich angeboten werden.', 'Beobachte, ob aggressive Verkaufsphasen mit mehr Kündigungen oder weniger Verlängerungen zusammenfallen.'] },
+      { title: 'Retention in Kohorten messen', paragraphs: ['Vergleiche Subscriber nach Startmonat oder Akquisequelle. So erkennst du, ob bestimmte Kampagnen viele kurzfristige Käufer bringen, während andere kleinere, aber stabilere Communities erzeugen.', 'Diese Sicht ist für Marketingentscheidungen oft wertvoller als die reine Zahl neuer Abos.'], bullets: ['Verlängerungsrate', 'Durchschnittliche Laufzeit', 'Umsatz pro Subscriber über Zeit', 'Retention nach Akquisequelle', 'Wiederkäufe von PPV', 'Feedback und Kündigungssignale'] },
+    ],
+    checklistTitle: 'Retention verbessern', checklist: ['Abo-Versprechen klar formuliert', 'Content-Rhythmus realistisch geplant', 'Puffer für stressige Wochen aufgebaut', 'Community-Zeiten definiert', 'PPV und Abo-Leistung klar getrennt', 'Verlängerungen regelmäßig gemessen', 'Akquisequellen mit Retention verglichen'],
+    related: ['onlyfans-ppv-strategie', 'onlyfans-preise-festlegen', 'creator-kennzahlen', 'content-batching', 'onlyfans-marketing'],
+    serviceLinks: [{ href: '/de/onlyfans-management', label: 'Retention im OnlyFans Management', text: 'Wir betrachten Akquise, Content, Angebotslogik und Bindung als einen gemeinsamen Funnel.' }],
+  },
+};
+
+export const searchDemandGuideList = Object.values(searchDemandGuides);
