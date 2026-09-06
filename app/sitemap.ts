@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { serviceSlugs } from '@/lib/service-pages';
-import { guideList } from '@/lib/guide-pages';
+import { allGuideList } from '@/lib/all-guides';
 
 export const dynamic = 'force-static';
 
@@ -38,7 +38,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   });
 
-  const guides: MetadataRoute.Sitemap = guideList.map((guide) => ({
+  const guides: MetadataRoute.Sitemap = allGuideList.map((guide) => ({
     url: `${base}/ratgeber/${guide.slug}`,
     lastModified: new Date(`${guide.updated}T00:00:00.000Z`),
     changeFrequency: 'monthly',
