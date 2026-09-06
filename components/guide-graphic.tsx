@@ -3,6 +3,8 @@ import { BarChart3, CheckCircle2, Layers3, Route, ShieldCheck, Sparkles } from '
 import type { UnifiedGuidePage } from '@/lib/all-guides';
 
 export function GuideGraphic({ page }: { page: UnifiedGuidePage }) {
+  if (page.slug === 'onlyfans-guide') return <PillarGraphic />;
+  if (page.slug.includes('-vs-')) return <ComparisonGraphic />;
   if (page.category === 'Sicherheit') return <SecurityGraphic />;
   if (page.category === 'Analyse') return <AnalyticsGraphic />;
   if (page.category === 'Management') return <ManagementGraphic />;
@@ -20,6 +22,60 @@ function Frame({ eyebrow, title, children }: { eyebrow: string; title: string; c
       </figcaption>
       <div className="p-4 sm:p-6">{children}</div>
     </figure>
+  );
+}
+
+function PillarGraphic() {
+  const steps = [
+    ['01', 'Positionierung', 'Zielgruppe, Marke, Grenzen'],
+    ['02', 'Profil', 'Bio, Erwartung, Angebot'],
+    ['03', 'Content', 'Säulen, Serien, Produktion'],
+    ['04', 'Marketing', 'Discovery, Trust, Conversion'],
+    ['05', 'Analyse', 'Conversion, Retention, Tests'],
+    ['06', 'Management', 'Rollen, Prozesse, Reporting'],
+  ];
+
+  return (
+    <Frame eyebrow="OnlyFans System" title="Die sechs Ebenen, die zusammen funktionieren müssen">
+      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+        {steps.map(([number, label, text], index) => (
+          <div key={label} className={`rounded-2xl p-4 ${index === 3 ? 'bg-[#15162d] text-white' : 'bg-[#f7f5ff] text-[#15162d]'}`}>
+            <div className="flex items-center justify-between gap-3">
+              <span className={`text-xs font-black tracking-[.12em] ${index === 3 ? 'text-[#d6fa43]' : 'text-[#6c35ed]'}`}>{number}</span>
+              <Route className={`size-4 ${index === 3 ? 'text-[#d6fa43]' : 'text-[#9c89d5]'}`} aria-hidden />
+            </div>
+            <p className="mt-6 font-black">{label}</p>
+            <p className={`mt-1 text-xs leading-relaxed ${index === 3 ? 'text-[#c9cbda]' : 'text-[#686c82]'}`}>{text}</p>
+          </div>
+        ))}
+      </div>
+    </Frame>
+  );
+}
+
+function ComparisonGraphic() {
+  const criteria = ['Zielgruppe', 'Discovery', 'Workflow', 'Monetarisierung', 'Analytics', 'Exit'];
+  return (
+    <Frame eyebrow="Plattformvergleich" title="Nicht nach Hype entscheiden – nach deinen Prioritäten gewichten">
+      <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-stretch">
+        <div className="rounded-2xl bg-[#15162d] p-5 text-white">
+          <p className="text-xs font-black uppercase tracking-[.14em] text-[#d6fa43]">Plattform A</p>
+          <div className="mt-4 space-y-2">
+            {criteria.slice(0, 3).map((item) => <div key={item} className="rounded-xl bg-white/10 px-3 py-2 text-sm font-semibold">{item}</div>)}
+          </div>
+        </div>
+        <div className="grid place-items-center py-1 sm:py-0">
+          <div className="grid size-12 place-items-center rounded-full bg-[#d6fa43] text-sm font-black text-[#15162d]">VS</div>
+        </div>
+        <div className="rounded-2xl bg-[#f7f5ff] p-5 text-[#15162d]">
+          <p className="text-xs font-black uppercase tracking-[.14em] text-[#6c35ed]">Plattform B</p>
+          <div className="mt-4 space-y-2">
+            {criteria.slice(3).map((item) => <div key={item} className="rounded-xl bg-white px-3 py-2 text-sm font-semibold shadow-sm">{item}</div>)}
+          </div>
+        </div>
+      </div>
+      <p className="mt-4 text-center text-xs font-semibold leading-relaxed text-[#777a8f]">Gewichte Kriterien nach deinem eigenen Geschäftsmodell und prüfe veränderliche Plattformbedingungen aktuell.</p>
+    </Frame>
   );
 }
 
