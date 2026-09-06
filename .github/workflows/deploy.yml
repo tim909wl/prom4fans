@@ -92,7 +92,12 @@ jobs:
             https://www.prom4fans.com/ratgeber/onlyfans-verifizierung \
             https://www.prom4fans.com/ratgeber/onlyfans-auszahlung-probleme \
             https://www.prom4fans.com/ratgeber/onlyfans-erste-100-abonnenten \
-            https://www.prom4fans.com/ratgeber/onlyfans-wie-viel-content-vor-start; do
+            https://www.prom4fans.com/ratgeber/onlyfans-wie-viel-content-vor-start \
+            https://www.prom4fans.com/ratgeber/onlyfans-account-abgelehnt \
+            https://www.prom4fans.com/ratgeber/onlyfans-chargeback-was-tun \
+            https://www.prom4fans.com/ratgeber/reddit-posts-werden-geloescht \
+            https://www.prom4fans.com/ratgeber/onlyfans-agentur-kuendigen \
+            https://www.prom4fans.com/ratgeber/instagram-reichweite-eingebrochen-creator; do
             status="$(curl -L -sS -o /dev/null -w '%{http_code}' "$url")"
             echo "$url -> $status"
             test "$status" = "200"
