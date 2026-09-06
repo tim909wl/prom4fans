@@ -37,21 +37,7 @@ jobs:
       - name: Build static export
         env:
           NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL || 'https://www.prom4fans.com' }}
-        run: |
-          npm run static
-
-          # Next's static export writes clean routes as .html files. On this
-          # Apache host, nested routes also create same-named directories.
-          # Give every route a physical DirectoryIndex as a fallback.
-          while IFS= read -r -d '' file; do
-            rel="${file#out/}"
-            route="${rel%.html}"
-            case "$route" in
-              index|404) continue ;;
-            esac
-            mkdir -p "out/$route"
-            cp "$file" "out/$route/index.html"
-          done < <(find out -type f -name '*.html' -print0)
+        run: npm run static
 
       - name: Configure SSH
         run: |
