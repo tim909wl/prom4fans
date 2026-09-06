@@ -3,15 +3,14 @@
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { FlagIcon } from '@/components/flag-icon';
 import type { Locale } from '@/lib/i18n';
 
-// Absolute (locale-prefixed) so the nav also works from pages other than the
-// homepage, e.g. /kontakt — a same-path fragment (like on the homepage itself)
-// just scrolls, a different path does a real navigation to the section.
 function navTargets(locale: Locale) {
-  return [`/${locale}#services`, `/${locale}#process`, `/${locale}#about`];
+  const sectionTargets = [`/${locale}#services`, `/${locale}#process`, `/${locale}#about`];
+  return locale === 'de' ? [...sectionTargets, '/ratgeber'] : sectionTargets;
 }
 
 export function SiteHeader({
@@ -29,11 +28,13 @@ export function SiteHeader({
   navAriaLabel: string;
   menuOpenLabel: string;
   menuCloseLabel: string;
-  onLocaleChange: (next: Locale) => void;
+  onLocaleChange?: (next: Locale) => void;
 }) {
+  const router = useRouter();
   const other = locale === 'de' ? 'en' : 'de';
   const targets = navTargets(locale);
   const [open, setOpen] = useState(false);
+  const changeLocale = onLocaleChange ?? ((next: Locale) => router.push(`/${next}`));
 
   useEffect(() => {
     if (!open) return;
@@ -52,7 +53,6 @@ export function SiteHeader({
     };
   }, [open]);
 
-  // Full-screen menu should never survive a resize back to desktop.
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 768px)');
     const close = () => setOpen(false);
@@ -77,7 +77,7 @@ export function SiteHeader({
               <a
                 className="group relative py-1 transition-colors hover:text-[#6c35ed]"
                 key={item}
-                href={targets[index]}
+                href={targets[index] ?? `/${locale}`}
               >
                 {item}
                 <span className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#6c35ed] transition-transform duration-300 group-hover:scale-x-100" />
@@ -90,7 +90,7 @@ export function SiteHeader({
               type="button"
               aria-label={`Sprache wechseln zu ${other}`}
               className="hidden items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] sm:inline-flex"
-              onClick={() => onLocaleChange(other)}
+              onClick={() => changeLocale(other)}
             >
               <FlagIcon locale={other} className="h-3 w-4 rounded-[2px]" />
               {other}
@@ -115,31 +115,14 @@ export function SiteHeader({
               )}
             >
               <span className="relative grid size-5 place-items-center">
-                <Menu
-                  aria-hidden
-                  className={cn(
-                    'absolute size-5 transition-all duration-300',
-                    open ? 'rotate-45 opacity-0' : 'rotate-0 opacity-100',
-                  )}
-                />
-                <X
-                  aria-hidden
-                  className={cn(
-                    'absolute size-5 transition-all duration-300',
-                    open ? 'rotate-0 opacity-100' : '-rotate-45 opacity-0',
-                  )}
-                />
+                <Menu aria-hidden className={cn('absolute size-5 transition-all duration-300', open ? 'rotate-45 opacity-0' : 'rotate-0 opacity-100')} />
+                <X aria-hidden className={cn('absolute size-5 transition-all duration-300', open ? 'rotate-0 opacity-100' : '-rotate-45 opacity-0')} />
               </span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Full-screen mobile nav overlay — kept OUTSIDE <header> on purpose: header has
-          backdrop-blur, and a backdrop-filter ancestor becomes the containing block for
-          position:fixed descendants, which broke "inset-0" down to the header's own
-          80px box instead of the viewport. The overlay has its own close button because
-          it sits above the header's stacking context on mobile. */}
       <div
         id="mobile-nav"
         aria-hidden={!open}
@@ -160,10 +143,7 @@ export function SiteHeader({
           </button>
         </div>
 
-        <nav
-          aria-label={navAriaLabel}
-          className="flex flex-1 flex-col justify-center gap-1 px-8 pb-16"
-        >
+        <nav aria-label={navAriaLabel} className="flex flex-1 flex-col justify-center gap-1 px-8 pb-16">
           {nav.map((item, index) => (
             <a
               className={cn(
@@ -172,7 +152,7 @@ export function SiteHeader({
               )}
               style={{ transitionDelay: open ? `${100 + index * 70}ms` : '0ms' }}
               key={item}
-              href={targets[index]}
+              href={targets[index] ?? `/${locale}`}
               onClick={() => setOpen(false)}
             >
               {item}
@@ -180,18 +160,14 @@ export function SiteHeader({
           ))}
         </nav>
         <div className="flex flex-col gap-4 border-t border-white/10 px-8 py-8">
-          <Link
-            href="/kontakt"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-14 items-center justify-center rounded-full bg-[#d6fa43] px-6 text-base font-bold text-[#15162d] transition-colors hover:bg-white"
-          >
+          <Link href="/kontakt" onClick={() => setOpen(false)} className="inline-flex h-14 items-center justify-center rounded-full bg-[#d6fa43] px-6 text-base font-bold text-[#15162d] transition-colors hover:bg-white">
             {cta}
           </Link>
           <button
             type="button"
             aria-label={`Sprache wechseln zu ${other}`}
             onClick={() => {
-              onLocaleChange(other);
+              changeLocale(other);
               setOpen(false);
             }}
             className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/20 px-6 text-sm font-bold uppercase tracking-widest text-white/80 transition-colors hover:border-white/50 hover:text-white"
