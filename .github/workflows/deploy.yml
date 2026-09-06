@@ -83,7 +83,10 @@ jobs:
             https://www.prom4fans.com/en \
             https://www.prom4fans.com/kontakt \
             https://www.prom4fans.com/de/creator-management \
-            https://www.prom4fans.com/de/onlyfans-management; do
+            https://www.prom4fans.com/de/onlyfans-management \
+            https://www.prom4fans.com/ratgeber \
+            https://www.prom4fans.com/ratgeber/onlyfans-starten \
+            https://www.prom4fans.com/ratgeber/creator-management-agentur; do
             status="$(curl -L -sS -o /dev/null -w '%{http_code}' "$url")"
             echo "$url -> $status"
             test "$status" = "200"
