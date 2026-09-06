@@ -16,10 +16,14 @@ DirectoryIndex index.html
 
   # Top-level Next static routes. These explicit rewrites intentionally run
   # even when same-named directories exist for nested pages.
-  RewriteRule ^(de|en|kontakt|impressum|datenschutz|nutzungsbedingungen)/?$ $1.html [END]
+  RewriteRule ^(de|en|kontakt|impressum|datenschutz|nutzungsbedingungen|ratgeber)/?$ $1.html [END]
 
   # SEO service landing pages.
   RewriteRule ^(de|en)/(creator-management|onlyfans-management)/?$ $1/$2.html [END]
+
+  # Editorial guide articles. Slugs are generated statically by Next.js;
+  # this rewrite only resolves the clean public URL to the exported HTML.
+  RewriteRule ^ratgeber/([a-z0-9-]+)/?$ ratgeber/$1.html [END]
 </IfModule>
 
 <IfModule mod_headers.c>
