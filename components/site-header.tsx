@@ -63,19 +63,19 @@ export function SiteHeader({
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-[#e8e5ef]/80 bg-[#fbfaf8]/95 backdrop-blur">
-        <div className="mx-auto flex h-20 w-[min(100%-2rem,90rem)] items-center justify-between">
+        <div className="mx-auto flex h-20 w-[min(100%-2rem,90rem)] items-center justify-between gap-4">
           <Link
             href={`/${locale}`}
-            className="font-black tracking-[.1em] text-[#6c35ed] transition-transform hover:scale-[1.03]"
+            className="shrink-0 font-black tracking-[.1em] text-[#6c35ed] transition-transform hover:scale-[1.03]"
             onClick={() => setOpen(false)}
           >
             PROM4FANS
           </Link>
 
-          <nav aria-label={navAriaLabel} className="hidden gap-8 text-base font-semibold text-[#3d3f57] md:flex">
+          <nav aria-label={navAriaLabel} className="hidden items-center gap-4 text-sm font-semibold text-[#3d3f57] md:flex lg:gap-7 lg:text-base">
             {nav.map((item, index) => (
               <a
-                className="group relative py-1 transition-colors hover:text-[#6c35ed]"
+                className="group relative whitespace-nowrap py-1 transition-colors hover:text-[#6c35ed]"
                 key={item}
                 href={targets[index] ?? `/${locale}`}
               >
@@ -85,11 +85,11 @@ export function SiteHeader({
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-3">
             <button
               type="button"
               aria-label={`Sprache wechseln zu ${other}`}
-              className="hidden items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] sm:inline-flex"
+              className="hidden items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-[#595b70] transition-colors hover:text-[#6c35ed] xl:inline-flex"
               onClick={() => changeLocale(other)}
             >
               <FlagIcon locale={other} className="h-3 w-4 rounded-[2px]" />
