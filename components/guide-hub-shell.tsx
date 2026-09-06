@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Clock3, Compass, Layers3, Sparkles } from 'lucide-react';
+import { ArrowRight, BookOpen, CircleAlert, Clock3, Compass, Layers3, Sparkles } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { getCopy } from '@/lib/i18n';
@@ -7,10 +7,21 @@ import { allGuideList } from '@/lib/all-guides';
 
 const categoryOrder = ['Einstieg', 'Content', 'Wachstum', 'Management', 'Sicherheit', 'Analyse'] as const;
 const featuredSlugs = ['onlyfans-guide', 'onlyfans-marketing', 'onlyfans-agentur-kosten'];
+const problemSlugs = [
+  'onlyfans-account-abgelehnt',
+  'onlyfans-auszahlung-probleme',
+  'onlyfans-bankverbindung-problem',
+  'onlyfans-chargeback-was-tun',
+  'onlyfans-ppv-wird-nicht-gekauft',
+  'onlyfans-subscriber-verlaengern-nicht',
+  'reddit-posts-werden-geloescht',
+  'instagram-reichweite-eingebrochen-creator',
+];
 
 export function GuideHubShell() {
   const c = getCopy('de');
   const featured = featuredSlugs.map((slug) => allGuideList.find((guide) => guide.slug === slug)).filter(Boolean);
+  const problems = problemSlugs.map((slug) => allGuideList.find((guide) => guide.slug === slug)).filter(Boolean);
 
   return (
     <>
@@ -53,6 +64,7 @@ export function GuideHubShell() {
 
           <div className="mx-auto mt-8 w-[min(100%-1.25rem,78rem)] sm:mt-10 sm:w-[min(100%-2rem,78rem)]">
             <div className="-mx-1 flex snap-x gap-2 overflow-x-auto px-1 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <a href="#probleme" className="shrink-0 snap-start rounded-full border border-[#6c35ed]/30 bg-[#6c35ed] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#5824d7]">Häufige Probleme</a>
               {categoryOrder.map((category) => (
                 <a key={category} href={`#${category.toLowerCase()}`} className="shrink-0 snap-start rounded-full border border-[#dcd6ee] bg-white px-4 py-2 text-sm font-semibold transition hover:border-[#6c35ed]/40 hover:text-[#6c35ed]">{category}</a>
               ))}
@@ -71,6 +83,29 @@ export function GuideHubShell() {
                   <p className="mt-7 text-xs font-extrabold uppercase tracking-[.13em] text-[#7a7d90]">{page.category}</p>
                   <h3 className="mt-2 text-xl font-black leading-tight tracking-[-.02em]">{page.title}</h3>
                   <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#64687e]">{page.lead}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="probleme" className="scroll-mt-24 overflow-hidden border-b border-white/10 bg-[#15162d] py-12 text-white sm:scroll-mt-28 sm:py-16 md:py-20">
+          <div className="mx-auto w-[min(100%-1.25rem,78rem)] sm:w-[min(100%-2rem,78rem)]">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-2 text-[.68rem] font-extrabold uppercase tracking-[.16em] text-[#d6fa43] sm:text-xs"><CircleAlert className="size-4" aria-hidden />Wenn gerade etwas nicht funktioniert</div>
+              <h2 className="mt-3 text-3xl font-black leading-[1.02] tracking-[-.035em] sm:text-4xl md:text-5xl">Häufige Creator-Probleme direkt lösen.</h2>
+              <p className="mt-4 text-sm leading-6 text-[#c9cbda] sm:text-base sm:leading-relaxed">Konkrete Checklisten für Situationen, in denen du nicht erst einen kompletten Marketing-Guide lesen willst: Account abgelehnt, Auszahlung hängt, PPV verkauft nicht, Reddit entfernt Posts oder Subscriber verlängern nicht.</p>
+            </div>
+
+            <div className="-mx-2 mt-7 flex snap-x gap-3 overflow-x-auto px-2 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 [&::-webkit-scrollbar]:hidden">
+              {problems.map((page) => page && (
+                <Link key={page.slug} href={`/ratgeber/${page.slug}`} className="group min-w-[84%] snap-start rounded-2xl border border-white/12 bg-white/[.06] p-5 transition hover:-translate-y-0.5 hover:border-[#d6fa43]/40 hover:bg-white/[.09] sm:min-w-0">
+                  <div className="flex items-start justify-between gap-3">
+                    <span className="rounded-full bg-white/10 px-2.5 py-1 text-[.65rem] font-extrabold uppercase tracking-[.1em] text-[#d6fa43]">{page.eyebrow}</span>
+                    <ArrowRight className="mt-1 size-4 shrink-0 text-[#d6fa43] transition-transform group-hover:translate-x-1" aria-hidden />
+                  </div>
+                  <h3 className="mt-5 text-lg font-black leading-tight tracking-[-.02em] text-white">{page.title}</h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-[#bfc1d1]">{page.lead}</p>
                 </Link>
               ))}
             </div>
