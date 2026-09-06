@@ -27,13 +27,17 @@ type ServicePageContent = {
 
 const guideRecommendations: Record<ServiceSlug, Array<{ href: string; title: string; text: string }>> = {
   'creator-management': [
-    { href: '/ratgeber/creator-management-agentur', title: 'Creator Management Agentur auswählen', text: 'Zwölf Fragen zu Scope, Accounts, Reporting, Vergütung und Kündigung vor der Zusammenarbeit.' },
+    { href: '/ratgeber/creator-management-agentur', title: 'Creator Management Agentur auswählen', text: 'Fragen zu Scope, Accounts, Reporting, Vergütung und Kündigung vor der Zusammenarbeit.' },
+    { href: '/ratgeber/creator-agentur-vertrag-checkliste', title: 'Creator-Agentur Vertrag prüfen', text: 'Leistungsumfang, Zugänge, Rechte, Vergütung und Exit vor der Unterschrift konkret klären.' },
+    { href: '/ratgeber/onlyfans-management-vs-selbst-machen', title: 'Management oder selbst machen?', text: 'Zeit, Kontrolle, Kosten und operative Engpässe nüchtern miteinander vergleichen.' },
     { href: '/ratgeber/creator-positionierung', title: 'Creator Positionierung entwickeln', text: 'Zielgruppe, Themen, Tonalität und Wiedererkennung zu einem klaren Profil verbinden.' },
     { href: '/ratgeber/creator-kennzahlen', title: 'Creator-Kennzahlen verstehen', text: 'Reichweite, Profilbesuche, Conversion und Retention als zusammenhängendes System lesen.' },
   ],
   'onlyfans-management': [
     { href: '/ratgeber/onlyfans-starten', title: 'OnlyFans starten: 30-Tage-Plan', text: 'Ein realistischer Start mit Positionierung, Content-Puffer, Sicherheit und Distribution.' },
-    { href: '/ratgeber/onlyfans-profil-optimieren', title: 'OnlyFans Profil optimieren', text: 'Bio, visuelle Linie und Erwartung so ausrichten, dass neue Besucher das Profil schneller verstehen.' },
+    { href: '/ratgeber/onlyfans-bio-schreiben', title: 'OnlyFans Bio schreiben', text: 'Positionierung, Erwartung und Call-to-Action in wenigen klaren Zeilen verbinden.' },
+    { href: '/ratgeber/onlyfans-preise-festlegen', title: 'OnlyFans Preise festlegen', text: 'Preisstrategie gemeinsam mit Content, Zielgruppe, Conversion und Verlängerungen betrachten.' },
+    { href: '/ratgeber/onlyfans-follower-gewinnen', title: 'OnlyFans Follower gewinnen', text: 'Reichweite als Funnel von Discovery über Vertrauen bis zur Handlung aufbauen.' },
     { href: '/ratgeber/social-media-funnel', title: 'Social Media Funnel für Creator', text: 'Aufmerksamkeit, Wiedererkennung, Vertrauen und Conversion sinnvoll miteinander verbinden.' },
   ],
 };
@@ -120,19 +124,19 @@ export function ServiceLandingShell({ locale, page }: { locale: Locale; page: Se
         </section>
 
         {locale === 'de' && (
-          <section className="border-y border-[#e8e5ef] bg-[#f7f5ff] py-20 text-[#15162d] md:py-24">
-            <div className="mx-auto w-[min(100%-2rem,78rem)]">
+          <section className="border-y border-[#e8e5ef] bg-[#f7f5ff] py-16 text-[#15162d] md:py-24">
+            <div className="mx-auto w-[min(100%-1.25rem,78rem)] sm:w-[min(100%-2rem,78rem)]">
               <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="text-xs font-extrabold uppercase tracking-[.16em] text-[#6c35ed]">Aus dem Ratgeber</p>
-                  <h2 className="mt-3 max-w-3xl text-4xl font-black tracking-[-.03em] md:text-5xl">Vertiefe die Themen, bevor du dich entscheidest.</h2>
+                  <h2 className="mt-3 max-w-3xl text-3xl font-black tracking-[-.03em] sm:text-4xl md:text-5xl">Vertiefe die Themen, bevor du dich entscheidest.</h2>
                 </div>
                 <Link href="/ratgeber" className="inline-flex items-center gap-1.5 font-bold text-[#6c35ed]">Alle Guides <ArrowRight className="size-4" aria-hidden /></Link>
               </div>
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
+              <div className="-mx-2 mt-8 flex snap-x gap-3 overflow-x-auto px-2 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden">
                 {guideRecommendations[page.slug].map((guide) => (
-                  <Link key={guide.href} href={guide.href} className="group rounded-2xl border border-[#ded9eb] bg-white p-6 transition hover:-translate-y-0.5 hover:border-[#6c35ed]/40 hover:shadow-lg">
-                    <h3 className="text-xl font-black leading-tight tracking-[-.02em]">{guide.title}</h3>
+                  <Link key={guide.href} href={guide.href} className="group min-w-[82%] snap-start rounded-2xl border border-[#ded9eb] bg-white p-5 transition hover:-translate-y-0.5 hover:border-[#6c35ed]/40 hover:shadow-lg sm:min-w-0 sm:p-6">
+                    <h3 className="text-lg font-black leading-tight tracking-[-.02em] sm:text-xl">{guide.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-[#5b6075]">{guide.text}</p>
                     <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-[#6c35ed]">Guide lesen <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden /></span>
                   </Link>
