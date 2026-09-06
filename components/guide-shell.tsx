@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, Check, ChevronDown, Clock3 } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, Clock3, ExternalLink } from 'lucide-react';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { GuideGraphic } from '@/components/guide-graphic';
@@ -134,6 +134,30 @@ export function GuideShell({ page }: { page: UnifiedGuidePage }) {
                 </ul>
               </section>
 
+              {page.sources && page.sources.length > 0 && (
+                <section className="mt-10 rounded-[1.6rem] border border-[#ded9eb] bg-[#f7f5ff] p-5 sm:mt-14 sm:p-7">
+                  <p className="text-[.68rem] font-extrabold uppercase tracking-[.16em] text-[#6c35ed] sm:text-xs">Quellen & offizielle Hinweise</p>
+                  <h2 className="mt-2 text-2xl font-black tracking-[-.03em] sm:text-3xl">Weiterlesen bei den zuständigen Stellen</h2>
+                  <div className="mt-5 grid gap-2.5">
+                    {page.sources.map((source) => (
+                      <a
+                        key={source.href}
+                        href={source.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        className="group flex items-start justify-between gap-4 rounded-2xl border border-[#e3ddf7] bg-white p-4 transition hover:border-[#6c35ed]/40 hover:shadow-sm"
+                      >
+                        <span>
+                          <span className="block text-sm font-black leading-snug text-[#25283d] group-hover:text-[#6c35ed]">{source.label}</span>
+                          {source.note && <span className="mt-1 block text-xs leading-5 text-[#74788d]">{source.note}</span>}
+                        </span>
+                        <ExternalLink className="mt-0.5 size-4 shrink-0 text-[#6c35ed]" aria-hidden />
+                      </a>
+                    ))}
+                  </div>
+                </section>
+              )}
+
               <section className="mt-12 border-t border-[#ded9eb] pt-9 sm:mt-16 sm:pt-12">
                 <p className="text-[.68rem] font-extrabold uppercase tracking-[.16em] text-[#6c35ed] sm:text-xs">Passend dazu</p>
                 <h2 className="mt-2 text-2xl font-black tracking-[-.03em] sm:mt-3 sm:text-3xl">Weiterlesen im Prom4Fans Ratgeber</h2>
@@ -163,7 +187,7 @@ export function GuideShell({ page }: { page: UnifiedGuidePage }) {
               </section>
 
               <p className="mt-6 text-xs leading-5 text-[#7a7d91] sm:mt-8 sm:text-sm sm:leading-relaxed">
-                Hinweis: Plattformfunktionen und Richtlinien können sich ändern. Prüfe sicherheits-, vertrags- oder plattformspezifische Details vor einer wichtigen Entscheidung zusätzlich in den jeweils aktuellen offiziellen Informationen. Prom4Fans gibt keine Einkommensgarantien.
+                Hinweis: Plattformfunktionen und Richtlinien können sich ändern. Prüfe sicherheits-, vertrags-, steuer- oder plattformspezifische Details vor einer wichtigen Entscheidung zusätzlich in den jeweils aktuellen offiziellen Informationen. Prom4Fans gibt keine Einkommensgarantien.
               </p>
             </div>
 
