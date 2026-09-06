@@ -1,28 +1,26 @@
-# This file belongs beside the exported contents of /out on an Apache host.
+# Static Next.js export on Apache / IONOS.
 Options -Indexes
 DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  RewriteCond %{HTTPS} !=on
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # One canonical origin, in a single redirect hop.
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} !^www\.prom4fans\.com$ [NC]
+  RewriteRule ^ https://www.prom4fans.com%{REQUEST_URI} [L,R=301]
 
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # The German homepage is the canonical default language entry point.
+  RewriteRule ^$ /de [L,R=301]
 
-  # Root export.
-  RewriteRule ^$ index.html [END]
-
-  # Top-level Next static routes. These explicit rewrites intentionally run
-  # even when same-named directories exist for nested pages.
+  # Top-level static routes. Explicit rewrites intentionally run even when
+  # same-named directories exist for nested pages.
   RewriteRule ^(de|en|kontakt|impressum|datenschutz|nutzungsbedingungen|ratgeber)/?$ $1.html [END]
 
-  # SEO service landing pages.
+  # Service landing pages.
   RewriteRule ^(de|en)/(creator-management|onlyfans-management)/?$ $1/$2.html [END]
 
-  # Editorial guide articles. Slugs are generated statically by Next.js;
-  # this rewrite only resolves the clean public URL to the exported HTML.
+  # Editorial guide articles. Slugs are generated statically by Next.js.
   RewriteRule ^ratgeber/([a-z0-9-]+)/?$ ratgeber/$1.html [END]
 </IfModule>
 
