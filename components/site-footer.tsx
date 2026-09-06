@@ -24,6 +24,7 @@ const copy: Record<Locale, FooterCopy> = {
     nav: [
       { label: 'Creator Management', href: '/de/creator-management' },
       { label: 'OnlyFans Management', href: '/de/onlyfans-management' },
+      { label: 'Creator Ratgeber', href: '/ratgeber' },
       { label: 'Leistungen', href: '/de#services' },
       { label: 'So läuft’s', href: '/de#process' },
       { label: 'Über uns', href: '/de#about' },
