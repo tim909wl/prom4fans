@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { GuideShell } from '@/components/guide-shell';
-import { guideSlugs, guides, type GuideSlug } from '@/lib/guide-pages';
+import { allGuideSlugs, getGuide, isGuideSlug } from '@/lib/all-guides';
 
 const base = 'https://www.prom4fans.com';
 
 export function generateStaticParams() {
-  return guideSlugs.map((slug) => ({ slug }));
+  return allGuideSlugs.map((slug) => ({ slug }));
 }
 
 export const dynamicParams = false;
@@ -14,11 +14,11 @@ export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: GuideSlug }>;
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  if (!guideSlugs.includes(slug)) return {};
-  const page = guides[slug];
+  if (!isGuideSlug(slug)) return {};
+  const page = getGuide(slug);
   const canonical = `/ratgeber/${slug}`;
 
   return {
@@ -35,19 +35,21 @@ export async function generateMetadata({
       publishedTime: `${page.published}T09:00:00+02:00`,
       modifiedTime: `${page.updated}T09:00:00+02:00`,
       authors: ['Prom4Fans Redaktion'],
+      images: [{ url: '/images/creator-window.png', alt: 'Prom4Fans Creator Ratgeber' }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${page.metaTitle} | Prom4Fans`,
       description: page.metaDescription,
+      images: ['/images/creator-window.png'],
     },
   };
 }
 
-export default async function GuidePage({ params }: { params: Promise<{ slug: GuideSlug }> }) {
+export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  if (!guideSlugs.includes(slug)) notFound();
-  const page = guides[slug];
+  if (!isGuideSlug(slug)) notFound();
+  const page = getGuide(slug);
   const url = `${base}/ratgeber/${slug}`;
 
   const jsonLd = {
