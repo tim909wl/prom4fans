@@ -52,25 +52,28 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const page = getGuide(slug);
   const url = `${base}/ratgeber/${slug}`;
 
+  const article = {
+    '@type': 'Article',
+    headline: page.title,
+    description: page.metaDescription,
+    datePublished: page.published,
+    dateModified: page.updated,
+    inLanguage: 'de-DE',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    author: { '@type': 'Organization', name: 'Prom4Fans Redaktion', url: `${base}/ratgeber` },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Prom4Fans',
+      url: base,
+      logo: { '@type': 'ImageObject', url: `${base}/favicon.svg` },
+    },
+    ...(page.sources?.length ? { citation: page.sources.map((source) => source.href) } : {}),
+  };
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      {
-        '@type': 'Article',
-        headline: page.title,
-        description: page.metaDescription,
-        datePublished: page.published,
-        dateModified: page.updated,
-        inLanguage: 'de-DE',
-        mainEntityOfPage: { '@type': 'WebPage', '@id': url },
-        author: { '@type': 'Organization', name: 'Prom4Fans Redaktion', url: `${base}/ratgeber` },
-        publisher: {
-          '@type': 'Organization',
-          name: 'Prom4Fans',
-          url: base,
-          logo: { '@type': 'ImageObject', url: `${base}/favicon.svg` },
-        },
-      },
+      article,
       {
         '@type': 'BreadcrumbList',
         itemListElement: [
