@@ -6,7 +6,7 @@ import { getCopy } from '@/lib/i18n';
 import { allGuideList } from '@/lib/all-guides';
 
 const categoryOrder = ['Einstieg', 'Content', 'Wachstum', 'Management', 'Sicherheit', 'Analyse'] as const;
-const featuredSlugs = ['onlyfans-starten', 'onlyfans-follower-gewinnen', 'onlyfans-management-vs-selbst-machen'];
+const featuredSlugs = ['onlyfans-guide', 'onlyfans-marketing', 'onlyfans-agentur-kosten'];
 
 export function GuideHubShell() {
   const c = getCopy('de');
