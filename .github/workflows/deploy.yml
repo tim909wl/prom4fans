@@ -80,7 +80,15 @@ jobs:
             https://www.prom4fans.com/ratgeber/onlyfans-marketing \
             https://www.prom4fans.com/ratgeber/onlyfans-agentur-kosten \
             https://www.prom4fans.com/ratgeber/fansly-vs-onlyfans \
-            https://www.prom4fans.com/ratgeber/fanvue-vs-onlyfans; do
+            https://www.prom4fans.com/ratgeber/fanvue-vs-onlyfans \
+            https://www.prom4fans.com/ratgeber/onlyfans-steuern-deutschland \
+            https://www.prom4fans.com/ratgeber/onlyfans-gewerbe-anmelden \
+            https://www.prom4fans.com/ratgeber/onlyfans-free-oder-paid \
+            https://www.prom4fans.com/ratgeber/onlyfans-ppv-strategie \
+            https://www.prom4fans.com/ratgeber/onlyfans-auf-reddit-bewerben \
+            https://www.prom4fans.com/ratgeber/onlyfans-content-geleakt-dmca \
+            https://www.prom4fans.com/ratgeber/onlyfans-tracking-links \
+            https://www.prom4fans.com/ratgeber/onlyfans-subscriber-halten; do
             status="$(curl -L -sS -o /dev/null -w '%{http_code}' "$url")"
             echo "$url -> $status"
             test "$status" = "200"
