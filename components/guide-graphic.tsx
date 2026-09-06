@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { BarChart3, CheckCircle2, Layers3, Route, ShieldCheck, Sparkles } from 'lucide-react';
 import type { UnifiedGuidePage } from '@/lib/all-guides';
 
@@ -10,7 +11,7 @@ export function GuideGraphic({ page }: { page: UnifiedGuidePage }) {
   return <StartGraphic />;
 }
 
-function Frame({ eyebrow, title, children }: { eyebrow: string; title: string; children: React.ReactNode }) {
+function Frame({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) {
   return (
     <figure className="overflow-hidden rounded-[1.75rem] border border-[#ded9eb] bg-white shadow-[0_20px_55px_rgba(21,22,45,.06)]">
       <figcaption className="border-b border-[#ece8f3] px-5 py-4 sm:px-6">
