@@ -12,7 +12,7 @@ export type LegalPage = { title: string; lead?: string; sections: LegalSection[]
 export const impressumCopy: Record<Locale, LegalPage> = {
   de: {
     title: 'Impressum',
-    lead: 'Angaben gemäß § 5 TMG.',
+    lead: 'Angaben gemäß § 5 DDG.',
     sections: [
       {
         heading: 'Betreiber',
@@ -27,11 +27,11 @@ export const impressumCopy: Record<Locale, LegalPage> = {
         body: ['Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle weder verpflichtet noch bereit.'],
       },
     ],
-    updated: 'Stand: 02.09.2026',
+    updated: 'Stand: 24.09.2026',
   },
   en: {
     title: 'Imprint',
-    lead: 'Information pursuant to § 5 of the German Telemedia Act (TMG).',
+    lead: 'Information pursuant to § 5 of the German Digital Services Act (DDG).',
     sections: [
       {
         heading: 'Operator',
@@ -46,7 +46,7 @@ export const impressumCopy: Record<Locale, LegalPage> = {
         body: ['We are neither obliged nor willing to participate in dispute-resolution proceedings before a consumer arbitration board.'],
       },
     ],
-    updated: 'Last updated: 2 September 2026',
+    updated: 'Last updated: 24 September 2026',
   },
 };
 
